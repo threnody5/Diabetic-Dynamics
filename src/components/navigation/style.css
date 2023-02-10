@@ -1,0 +1,29 @@
+.container {
+    padding: 20px;
+    margin-left: -8px;
+    margin-top: -8px;
+    margin-right: -8px;
+}
+
+.button-container {
+    float: right;
+}
+
+.button-style {
+    padding: 5px;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.link-text {
+    text-decoration: none;
+    font-weight: bold;
+    color: #5e9ca1;
+}
+
+.webpage-name {
+    font-weight: bold;
+    color: #5e9ca1;
+    font-size: 22px;
+}
