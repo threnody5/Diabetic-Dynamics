@@ -11,7 +11,7 @@ export default function Navigation() {
       <span className='button-container'>
         <button className='button-style'>
           <NavLink
-            className='link-text'
+            className='navigation-link-text'
             to='sign-in'
           >
             Sign-In
@@ -19,7 +19,7 @@ export default function Navigation() {
         </button>
         <button className='button-style'>
           <NavLink
-            className='link-text'
+            className='navigation-link-text'
             to='sign-up'
           >
             Sign Up

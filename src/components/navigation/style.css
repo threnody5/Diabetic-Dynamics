@@ -12,14 +12,16 @@
 .button-style {
     padding: 5px;
     margin-left: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
-.link-text {
+.navigation-link-text {
     text-decoration: none;
     font-weight: bold;
     color: #5e9ca1;
+    padding: 7px;
+    padding-left: 28px;
+    padding-right: 28px;
+
 }
 
 .webpage-name {
