@@ -2,11 +2,11 @@
 
 import { Routes, Route } from 'react-router-dom';
 
-import LandingPage from './components/landing-page';
+import LandingPage from './pages/landing-page';
 import SignIn from './components/sign-in';
 import SignUp from './components/sign-up';
 import LoggedIn from './components/logged-in';
-import PageNotFound from './components/page-not-found';
+import PageNotFound from './pages/page-not-found';
 
 function App() {
   return (
