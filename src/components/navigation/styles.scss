@@ -1,0 +1,40 @@
+.container {
+    padding: 20px;
+    margin-left: -8px;
+    margin-top: -8px;
+    margin-right: -8px;
+
+    .button-sign-in,
+    .button-sign-up {
+        font-weight: bold;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-color: #985d59;
+        margin: 0 0 0 1rem;
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    .button-container {
+        float: right;
+    }
+
+    .navigation-link-text {
+        text-decoration: none;
+        font-weight: bold;
+        color: #5e9ca1;
+        padding: 7px;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .webpage-name {
+        font-weight: bold;
+        color: #5e9ca1;
+        font-size: 22px;
+    }
+}

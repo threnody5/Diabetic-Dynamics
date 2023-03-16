@@ -1,6 +1,6 @@
 /** @format */
 
-import './style.css';
+import './styles.scss';
 
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -32,7 +32,9 @@ export default function SignUp() {
     }
     // Checks the length of the password.
     if (password.length < 8) {
-      window.alert('Please enter a password with at least 8 characters');
+      window.alert(
+        'Please enter a password with at least 8 characters'
+      );
       return;
     }
     // Checks if both passwords match.
@@ -41,7 +43,11 @@ export default function SignUp() {
       return;
     }
     // If all checks are successful, creates a new account with the email and password provided.
-    createUserWithEmailAndPassword(authentication, emailAddress, password)
+    createUserWithEmailAndPassword(
+      authentication,
+      emailAddress,
+      password
+    )
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log(user);
@@ -111,22 +117,22 @@ export default function SignUp() {
             </label>
           </div>
           <div className='button-container'>
+            <button className='home-button'>
+              <NavLink
+                className='link-text'
+                to='/'
+              >
+                Back Home
+              </NavLink>
+            </button>
             <button
-              className='button'
+              className='create-account-button'
               onClick={() => createAccount()}
             >
               Create Account
             </button>
           </div>
         </div>
-        <button className='button'>
-          <NavLink
-            className='link-text'
-            to='/'
-          >
-            Back Home
-          </NavLink>
-        </button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 /** @format */
 
-import './style.css';
+import './styles.scss';
 
 import { NavLink } from 'react-router-dom';
 
@@ -9,17 +9,17 @@ export default function Navigation() {
     <div className='container'>
       <span className='webpage-name'>Diabetic Dynamics</span>
       <span className='button-container'>
-        <button className='button-style'>
+        <button className='button-sign-in'>
           <NavLink
-            className='navigation-link-text'
+            // className='navigation-link-text'
             to='sign-in'
           >
             Sign-In
           </NavLink>
         </button>
-        <button className='button-style'>
+        <button className='button-sign-up'>
           <NavLink
-            className='navigation-link-text'
+            // className='navigation-link-text'
             to='sign-up'
           >
             Sign Up

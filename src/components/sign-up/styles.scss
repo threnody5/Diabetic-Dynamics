@@ -1,0 +1,67 @@
+.sign-up-container {
+    background-color: #B9D4D6;
+    width: 40vw;
+    max-width: 1140px;
+    padding: 15px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    border-radius: 2%;
+    margin-top: 10vh;
+
+    .create-account-button,
+    .home-button {
+        font-weight: bold;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-color: #985d59;
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    .sign-up-text {
+        text-align: center;
+    }
+
+    .label-text {
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .input-field {
+        width: 30vw;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        margin-bottom: 2vh;
+        border: 2px solid #985d59;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // body {
+    //     background-image: url('./../../images/background-image.jpg');
+    // }
+}
+
+
+
+// .button {
+//     font-weight: bold;
+//     padding: 10px;
+//     padding-left: 15px;
+//     padding-right: 15px;
+//     border-color: #985d59;
+// }
+
+// body {
+//     background-image: url('./../../images/background-image.jpg');
+// }
