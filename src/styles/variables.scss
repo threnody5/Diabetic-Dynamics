@@ -1,11 +1,21 @@
+
+$backdrop-gradient-color: linear-gradient(to bottom right, #57DAD5, #5D33B4);
 $primary-color: #B9D4D6;
-$border-color: #66d9ff;
+$border-color: #ab75bd;
 $dark-text-color: #000;
 $light-text-color: #fff;
+$light-button-text-color: #57DAD5;
+$dark-button-text-color: #000;
 
 
 @mixin breakpoint($max-width) {
     @media only screen and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin medium-breakpoint() {
+    @include breakpoint(1060px) {
         @content;
     }
 }
