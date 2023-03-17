@@ -1,0 +1,15 @@
+@import './../../styles/variables.scss';
+
+.card-container {
+    background-image: $backdrop-gradient-color;
+    width: 55%;
+    max-width: 1140px;
+    padding: 15px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    margin-top: 10vh;
+}
