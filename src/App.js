@@ -7,6 +7,8 @@ import SignIn from './components/sign-in';
 import SignUpPage from './pages/sign-up-page';
 import LoggedIn from './components/logged-in';
 import PageNotFound from './pages/page-not-found';
+import HomeContents from './pages/home-contents';
+import StoryOfMax from './pages/testimonials/Max';
 
 function App() {
   return (
@@ -14,7 +16,16 @@ function App() {
       <Route
         path='/'
         element={<LandingPage />}
-      />
+      >
+        <Route
+          path=''
+          element={<HomeContents />}
+        />
+        <Route
+          path='story-of-max'
+          element={<StoryOfMax />}
+        />
+      </Route>
       <Route
         path='/sign-in'
         element={<SignIn />}
