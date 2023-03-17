@@ -1,8 +1,10 @@
 $primary-color: #B9D4D6;
-$border-color: #985d59;
-$text-color: #000;
+$border-color: #66d9ff;
+$dark-text-color: #000;
+$light-text-color: #fff;
 
-@include breakpoint($max-width) {
+
+@mixin breakpoint($max-width) {
     @media only screen and (max-width: $max-width) {
         @content;
     }
