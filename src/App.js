@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import LandingPage from './pages/landing-page';
 import SignIn from './components/sign-in';
-import SignUp from './components/sign-up';
+import SignUpPage from './pages/sign-up-page';
 import LoggedIn from './components/logged-in';
 import PageNotFound from './pages/page-not-found';
 
@@ -21,7 +21,7 @@ function App() {
       />
       <Route
         path='/sign-up'
-        element={<SignUp />}
+        element={<SignUpPage />}
       />
       <Route
         path='/logged-in'

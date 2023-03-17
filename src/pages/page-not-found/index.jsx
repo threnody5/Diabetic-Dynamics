@@ -1,9 +1,13 @@
-/** @format */
+import React from 'react';
 
-export default function PageNotFound() {
-  return (
-    <div>
-      <h1>Page Not Found works</h1>
-    </div>
-  );
+class PageNotFound extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Page Not Found works</h1>
+      </div>
+    );
+  }
 }
+
+export default PageNotFound;
