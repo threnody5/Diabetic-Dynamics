@@ -1,15 +1,28 @@
+@import './../../styles/variables.scss';
+
 .sign-up-container {
-    background-color: #B9D4D6;
-    width: 40vw;
+    background-color: $primary-color;
+    width: 40%;
     max-width: 1140px;
     padding: 15px;
     margin: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60vh;
+    height: 40%;
     border-radius: 2%;
     margin-top: 10vh;
+
+    .error-messages-container {
+        width: 80%;
+        margin: auto;
+        padding-bottom: 1rem;
+
+        h3 {
+            color: red;
+        }
+    }
 
     .create-account-button,
     .home-button {
@@ -17,7 +30,7 @@
         padding: 10px;
         padding-left: 15px;
         padding-right: 15px;
-        border-color: #985d59;
+        border-color: $border-color;
 
         a {
             text-decoration: none;
@@ -39,29 +52,21 @@
         padding-top: 1vh;
         padding-bottom: 1vh;
         margin-bottom: 2vh;
-        border: 2px solid #985d59;
+        border: 2px solid $border-color;
     }
 
-    .button-container {
+    .input-container {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+
+        .button-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
     }
 
-    // body {
-    //     background-image: url('./../../images/background-image.jpg');
-    // }
 }
-
-
-
-// .button {
-//     font-weight: bold;
-//     padding: 10px;
-//     padding-left: 15px;
-//     padding-right: 15px;
-//     border-color: #985d59;
-// }
-
-// body {
-//     background-image: url('./../../images/background-image.jpg');
-// }
