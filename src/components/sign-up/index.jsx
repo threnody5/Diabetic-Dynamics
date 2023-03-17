@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
+import Card from '../Card';
 
 /**
  * Sign in function for Firebase Authentication.
@@ -76,81 +77,83 @@ export default function SignUp() {
   };
 
   return (
-    <form className='sign-up-container'>
-      <h1 className='sign-up-text'>Sign up</h1>
-      <div className='error-messages-container'>
-        {errorMessages.length > 0 && (
+    <Card>
+      <form className='sign-up-container'>
+        <h1 className='sign-up-text'>Sign up</h1>
+        <div className='error-messages-container'>
+          {errorMessages.length > 0 && (
+            <div>
+              <h3>Invalid Data:</h3>
+              <ul>
+                {errorMessages.map((error, index) => {
+                  return <li key={index}>{error}</li>;
+                })}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className='input-container'>
           <div>
-            <h3>Invalid Data:</h3>
-            <ul>
-              {errorMessages.map((error, index) => {
-                return <li key={index}>{error}</li>;
-              })}
-            </ul>
+            <label className='label-text'>
+              Email Address:
+              <div>
+                <input
+                  className='input-field'
+                  type='email'
+                  value={emailAddress}
+                  onChange={(e) => {
+                    setEmailAddress(e.target.value);
+                  }}
+                />
+              </div>
+            </label>
           </div>
-        )}
-      </div>
-      <div className='input-container'>
-        <div>
-          <label className='label-text'>
-            Email Address:
-            <div>
-              <input
-                className='input-field'
-                type='email'
-                value={emailAddress}
-                onChange={(e) => {
-                  setEmailAddress(e.target.value);
-                }}
-              />
-            </div>
-          </label>
-        </div>
-        <div>
-          <label className='label-text'>
-            Password:
-            <div>
-              <input
-                className='input-field'
-                type='password'
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </div>
-          </label>
-        </div>
-        <div>
-          <label className='label-text'>
-            Re-enter Password:
-            <div>
-              <input
-                className='input-field'
-                type='password'
-                value={reEnteredPassword}
-                onChange={(e) => {
-                  setReEnteredPassword(e.target.value);
-                }}
-              />
-            </div>
-          </label>
-        </div>
-        <div className='button-container'>
-          <button
-            className='create-account-button'
-            onClick={(e) => createAccount(e)}
-          >
-            Create Account
-          </button>
-          <div className='sign-in-link'>
-            Already have an account? <Link to='/sign-in'>Sign In</Link>
+          <div>
+            <label className='label-text'>
+              Password:
+              <div>
+                <input
+                  className='input-field'
+                  type='password'
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+              </div>
+            </label>
           </div>
-          <div className='home-link'>
-            Click <Link to='/'>here</Link> to go back home
+          <div>
+            <label className='label-text'>
+              Re-enter Password:
+              <div>
+                <input
+                  className='input-field'
+                  type='password'
+                  value={reEnteredPassword}
+                  onChange={(e) => {
+                    setReEnteredPassword(e.target.value);
+                  }}
+                />
+              </div>
+            </label>
+          </div>
+          <div className='button-container'>
+            <button
+              className='create-account-button'
+              onClick={(e) => createAccount(e)}
+            >
+              Create Account
+            </button>
+            <div className='sign-in-link'>
+              Already have an account? <Link to='/sign-in'>Sign In</Link>
+            </div>
+            <div className='home-link'>
+              Click <Link to='/'>here</Link> to go back home
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </Card>
   );
 }
