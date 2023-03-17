@@ -4,7 +4,7 @@ import './styles.scss';
 
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
 
 /**
@@ -28,10 +28,12 @@ export default function SignUp() {
     e.preventDefault();
     const validate = [];
 
+    // Check if the email address is valid.
     const emailFormat = new RegExp(
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     );
 
+    // Check if the password meets all the requirements for a strong password.
     const passwordStrength = new RegExp(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
     );
@@ -96,7 +98,6 @@ export default function SignUp() {
               <input
                 className='input-field'
                 type='email'
-                placeholder='email@example.com'
                 value={emailAddress}
                 onChange={(e) => {
                   setEmailAddress(e.target.value);
@@ -112,7 +113,6 @@ export default function SignUp() {
               <input
                 className='input-field'
                 type='password'
-                placeholder='**********'
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -128,7 +128,6 @@ export default function SignUp() {
               <input
                 className='input-field'
                 type='password'
-                placeholder='**********'
                 value={reEnteredPassword}
                 onChange={(e) => {
                   setReEnteredPassword(e.target.value);
@@ -138,20 +137,18 @@ export default function SignUp() {
           </label>
         </div>
         <div className='button-container'>
-          <button className='home-button'>
-            <NavLink
-              className='link-text'
-              to='/'
-            >
-              Back Home
-            </NavLink>
-          </button>
           <button
             className='create-account-button'
             onClick={(e) => createAccount(e)}
           >
             Create Account
           </button>
+          <div className='sign-in-link'>
+            Already have an account? <Link to='/sign-in'>Sign In</Link>
+          </div>
+          <div className='home-link'>
+            Click <Link to='/'>here</Link> to go back home
+          </div>
         </div>
       </div>
     </form>
