@@ -2,7 +2,7 @@ import React from 'react';
 import bloodGlucoseImage from './../../images/Endocrinology-Diabetes.png';
 import catGentlemen from './../../images/cat-gentleman.jpeg';
 import olderDog from './../../images/older-dog.jpeg';
-import runningDog from './../../images/running-dog.jpeg';
+import maxTheDog from './../../images/running-dog.jpeg';
 import smilingDog from './../../images/smiling-dog.jpeg';
 import { Link } from 'react-router-dom';
 import './styles.scss';
@@ -66,7 +66,7 @@ class HomeContents extends React.Component {
           />
           <Link to='story-of-max'>
             <img
-              src={runningDog}
+              src={maxTheDog}
               alt=''
               className='gallery-image'
             />

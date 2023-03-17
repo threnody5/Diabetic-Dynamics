@@ -1,9 +1,13 @@
 import React from 'react';
+import Card from './../../../components/Card';
+import maxTheDog from './../../../images/running-dog.jpeg';
+import './styles.scss';
 
 class StoryOfMax extends React.Component {
   render() {
     return (
-      <div>
+      <Card>
+        <h1>Max's Story</h1>
         <p>
           My name is Lisa, and I am a dog lover. I have always had dogs in my
           life and can't imagine living without them. When I moved to the city,
@@ -62,7 +66,12 @@ class StoryOfMax extends React.Component {
           friend, and I would recommend them to anyone who needs help managing
           their pet's diabetes.
         </p>
-      </div>
+        <img
+          className='max-picture'
+          src={maxTheDog}
+          alt='happy-dog'
+        />
+      </Card>
     );
   }
 }
