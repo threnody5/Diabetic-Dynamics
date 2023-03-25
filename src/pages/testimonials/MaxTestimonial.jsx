@@ -1,6 +1,5 @@
 import React from 'react';
-import Card from './../../../components/Card';
-import maxTheDog from './../../../images/running-dog.jpeg';
+import Card from '../../components/Card';
 import './styles.scss';
 
 class StoryOfMax extends React.Component {
@@ -74,11 +73,6 @@ class StoryOfMax extends React.Component {
             their pet's diabetes.
           </p>
           <h3>Lisa Ann</h3>
-          <img
-            className='max-picture'
-            src={maxTheDog}
-            alt='happy-dog'
-          />
         </div>
       </Card>
     );
