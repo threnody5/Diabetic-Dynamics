@@ -15,8 +15,8 @@ import Card from '../Card';
  * - Requires both the password and re-entered password to match.
  */
 export default function SignUp() {
-  const [emailAddress, setEmailAddress] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('test2@test.com');
+  const [password, setPassword] = useState('Temppassword1!');
   const [reEnteredPassword, setReEnteredPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
 
@@ -58,7 +58,11 @@ export default function SignUp() {
     if (validate.length === 0) {
       setErrorMessages([]);
       // If all checks are successful, creates a new account with the email and password provided.
-      createUserWithEmailAndPassword(authentication, emailAddress, password)
+      createUserWithEmailAndPassword(
+        authentication,
+        emailAddress,
+        password
+      )
         .then((userCredentials) => {
           const user = userCredentials.user;
           console.log(user);
@@ -146,7 +150,8 @@ export default function SignUp() {
               Create Account
             </button>
             <div className='sign-in-link'>
-              Already have an account? <Link to='/sign-in'>Sign In</Link>
+              Already have an account?{' '}
+              <Link to='/sign-in'>Sign In</Link>
             </div>
             <div className='home-link'>
               Click <Link to='/'>here</Link> to go back home

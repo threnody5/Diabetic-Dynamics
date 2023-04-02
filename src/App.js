@@ -12,6 +12,7 @@ import HomeContents from './pages/home-contents';
 import StoryOfMax from './pages/testimonials/MaxTestimonial';
 import StoryOfRover from './pages/testimonials/RoverTestimonial';
 import StoryOfCharlie from './pages/testimonials/CharlieTestimonial';
+import SignedInLandingPage from './pages/signed-in-landing-page';
 
 function App() {
   return (
@@ -50,6 +51,10 @@ function App() {
         <Route
           path='/logged-in'
           element={<LoggedIn />}
+        />
+        <Route
+          path='/signed-in'
+          element={<SignedInLandingPage />}
         />
         <Route
           path='*'
