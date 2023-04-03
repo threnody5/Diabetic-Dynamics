@@ -10,7 +10,7 @@ class SignIn extends React.Component {
     super();
     this.state = {
       errorMessages: [],
-      emailAddress: 'test5@test.com',
+      emailAddress: 'test@test.com',
       password: 'Temppassword1!',
       loggedIn: false,
     };
@@ -29,29 +29,31 @@ class SignIn extends React.Component {
         validate.push('Please enter a valid email address.');
         console.log('email address error!');
       }
-      if (validate.length > 0) {
-        this.state.errorMessages.push(validate);
-      }
-      if (this.state.errorMessages.length === 0) {
-        signInWithEmailAndPassword(
-          authentication,
-          this.state.emailAddress,
-          this.state.password
-        )
-          .then((userCredentials) => {
-            // User has been signed in.
-            const user = userCredentials.user;
-            console.log(user);
-            this.setState({ loggedIn: true });
-          })
-          .catch((err) => {
-            const errorMessage = err.message;
-            validate.push(errorMessage);
-            console.error(errorMessage);
-          });
-      }
+      // if (validate.length > 0) {
+      //   this.state.errorMessages.push(validate);
+      // }
+      signInWithEmailAndPassword(
+        authentication,
+        this.state.emailAddress,
+        this.state.password
+      )
+        .then((userCredentials) => {
+          // User has been signed in.
+          const user = userCredentials.user;
+          console.log(user);
+          this.setState({ loggedIn: true });
+        })
+        .catch((err) => {
+          const errorMessage = err.message;
+          validate.push(errorMessage);
+          // console.error(errorMessage);
+        });
 
-      console.log(this.state.errorMessages);
+      // componentDidUpdate(prevProps) {
+      // if (this.state.errorMessages !== prevProps.errorMessages) {}
+      this.setState({ errorMessages: validate });
+      // }
+      // console.log(validate)
     };
     return (
       <Card>
