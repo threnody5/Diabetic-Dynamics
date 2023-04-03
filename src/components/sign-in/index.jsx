@@ -27,23 +27,23 @@ const SignIn = () => {
 
     if (!emailAddress.match(emailFormat)) {
       validate.push('Please enter a valid email address.');
-      console.log('email address error!');
     }
-    signInWithEmailAndPassword(authentication, emailAddress, password)
-      .then((userCredentials) => {
-        // User has been signed in.
-        const user = userCredentials.user;
-        dispatch(logIn());
-        console.log(user);
-      })
-      .catch((err) => {
-        const errorMessage = err.message;
-        validate.push(errorMessage);
-        // console.error(errorMessage);
-      });
-
+    if (validate.length === 0) {
+      signInWithEmailAndPassword(authentication, emailAddress, password)
+        .then((userCredentials) => {
+          // User has been signed in.
+          // const user = userCredentials.user;
+          dispatch(logIn());
+        })
+        .catch((err) => {
+          // const errorMessage = err.message;
+          // validate.push('An error has occurred. Please try again.');
+          window.alert('Incorrect password, please try again.');
+        });
+    }
+    console.log('Validate: ', validate);
     setErrorMessages(validate);
-    // console.log(validate)
+    console.log('Error Messages: ', errorMessages);
   };
   return (
     <Card>
