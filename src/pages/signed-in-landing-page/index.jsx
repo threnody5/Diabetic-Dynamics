@@ -1,9 +1,9 @@
 import React from 'react';
-import LoggedIn from '../../components/logged-in';
+import SignedInPage from '../../components/signed-in-page';
 
 class SignedInLandingPage extends React.Component {
   render() {
-    return <LoggedIn />;
+    return <SignedInPage />;
   }
 }
 

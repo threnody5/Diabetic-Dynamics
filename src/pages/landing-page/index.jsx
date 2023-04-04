@@ -7,9 +7,6 @@ class LandingPage extends React.Component {
   render() {
     return (
       <>
-        {/* <div> */}
-        {/* <Navigation /> */}
-        {/* </div> */}
         <Outlet />
       </>
     );

@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/landing-page';
 import SignInPage from './pages/sign-in-page';
 import SignUpPage from './pages/sign-up-page';
-import LoggedIn from './components/logged-in';
+import SignedInPage from './components/signed-in-page';
 import Navigation from './components/navigation';
 import PageNotFound from './pages/page-not-found';
 import HomeContents from './pages/home-contents';
@@ -50,7 +50,7 @@ function App() {
         />
         <Route
           path='/logged-in'
-          element={<LoggedIn />}
+          element={<SignedInPage />}
         />
         <Route
           path='/signed-in'

@@ -14,8 +14,6 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
-  console.log(loggedInStatus);
-
   const logInHandler = (e) => {
     e.preventDefault();
     const validate = [];
@@ -41,9 +39,9 @@ const SignIn = () => {
           window.alert('Incorrect password, please try again.');
         });
     }
-    console.log('Validate: ', validate);
+    // console.log('Validate: ', validate);
     setErrorMessages(validate);
-    console.log('Error Messages: ', errorMessages);
+    // console.log('Error Messages: ', errorMessages);
   };
   return (
     <Card>

@@ -1,30 +1,27 @@
-/** @format */
-
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import SignOut from '../sign-out';
 import './styles.scss';
 
-import { NavLink } from 'react-router-dom';
-
 export default function Navigation() {
+  const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
+
   return (
     <div className='container'>
       <span className='webpage-name'>Diabetic Dynamics</span>
       <span className='button-container'>
-        <button className='button-sign-in'>
-          <NavLink
-            // className='navigation-link-text'
-            to='sign-in'
-          >
-            Sign-In
-          </NavLink>
-        </button>
-        <button className='button-sign-up'>
-          <NavLink
-            // className='navigation-link-text'
-            to='sign-up'
-          >
-            Sign Up
-          </NavLink>
-        </button>
+        {loggedInStatus ? (
+          <SignOut />
+        ) : (
+          <>
+            <button className='button-sign-in'>
+              <NavLink to='sign-in'>Sign-In</NavLink>
+            </button>
+            <button className='button-sign-up'>
+              <NavLink to='sign-up'>Sign Up</NavLink>
+            </button>
+          </>
+        )}
       </span>
     </div>
   );
