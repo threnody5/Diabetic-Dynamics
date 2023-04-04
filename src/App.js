@@ -1,7 +1,4 @@
-/** @format */
-
 import { Routes, Route } from 'react-router-dom';
-
 import LandingPage from './pages/landing-page';
 import SignInPage from './pages/sign-in-page';
 import SignUpPage from './pages/sign-up-page';
