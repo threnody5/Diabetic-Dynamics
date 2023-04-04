@@ -2,7 +2,9 @@
 
 .card-container {
     // background-image: $backdrop-gradient-color;
-    background-color: #99ccff;
+    background-color: #FCFCFC;
+    @include box-shadow;
+    // box-shadow: 5px 5px 5px 0px gray;
     width: 55%;
     max-width: 1140px;
     padding: 15px;

@@ -48,8 +48,8 @@ const SignIn = () => {
   return (
     <Card>
       {!loggedInStatus ? (
-        <form className='log-in-container'>
-          <h1 className='log-in-text'>Log In</h1>
+        <form className='sign-in-container'>
+          <h1 className='sign-in-text'>Sign In</h1>
           <div className='error-messages-container'>
             {errorMessages.length > 0 && (
               <div>
@@ -95,7 +95,7 @@ const SignIn = () => {
             </div>
             <div className='button-container'>
               <button
-                className='create-account-button'
+                className='sign-in-account-button'
                 onClick={(e) => logInHandler(e)}
               >
                 Log In

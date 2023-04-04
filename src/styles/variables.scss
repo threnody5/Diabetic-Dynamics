@@ -1,5 +1,6 @@
-
-$backdrop-gradient-color: linear-gradient(to bottom right, #57DAD5, #5D33B4);
+$backdrop-gradient-color: linear-gradient(to bottom left, #57DAD5, #5D33B4);
+// $button-gradient-color: linear-gradient(to bottom right, #5D33B4, #57DAD5);
+$button-backdrop-color: #69d3cf;
 $backdrop-color: #5e9ca1;
 $primary-color: #B9D4D6;
 $border-color: #ab75bd;
@@ -7,6 +8,7 @@ $dark-text-color: #000;
 $light-text-color: #fff;
 $light-button-text-color: #57DAD5;
 $dark-button-text-color: #000;
+$light-text-highlight-color: #288582;
 $dark-text-highlight-color: #321782;
 
 
@@ -20,4 +22,26 @@ $dark-text-highlight-color: #321782;
     @include breakpoint(1060px) {
         @content;
     }
+}
+
+@mixin button {
+    font-weight: bold;
+    width: 100%;
+    padding: 10px 25px 10px 25px;
+    border: 1px solid black;
+    color: $dark-button-text-color;
+    background-color: $button-backdrop-color;
+    @content;
+}
+
+@mixin box-shadow {
+    box-shadow: 2px 2px 2px 0px gray;
+    @content;
+}
+
+@mixin link-text {
+    text-decoration: none;
+    color: $light-text-highlight-color;
+    font-weight: bold;
+    @content;
 }

@@ -1,9 +1,10 @@
-/** @format */
+import Modal from '../modal';
 
 export default function LoggedIn() {
   return (
     <div>
-      <h1>Logged in works</h1>
+      <button>Add a new pet</button>
+      <Modal />
     </div>
   );
 }

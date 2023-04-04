@@ -8,3 +8,9 @@
         text-align: center;
     }
 }
+
+.testimonial-home-link {
+    a {
+        @include link-text;
+    }
+}
