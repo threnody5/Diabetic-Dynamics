@@ -1,15 +1,6 @@
-/** @format */
-
-// Import the functions you need from the SDKs you need
-
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-
-// TODO: Add SDKs for Firebase products that you want to use
-
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAaxfBvngtIgQGOKcGvgqNB4thIY6ispwk',
@@ -18,9 +9,10 @@ const firebaseConfig = {
   storageBucket: 'react-js4-final-project-app.appspot.com',
   messagingSenderId: '878125714956',
   appId: '1:878125714956:web:e1510e6ab93ef38123a829',
+  databaseURL:
+    'https://react-js4-final-project-app-default-rtdb.firebaseio.com',
 };
 
-// Initialize Firebase
-
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const authentication = getAuth(app);
+export const database = getDatabase(app);

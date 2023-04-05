@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from '../../util/redux/petInfoSlice';
+import { addPetToDatabase } from '../../api/write';
 import './styles.scss';
 
 const AddPet = (props) => {
+  const userID = useSelector((state) => state.userID.id);
   const [petName, setPetName] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
@@ -26,6 +28,7 @@ const AddPet = (props) => {
   };
 
   const addPetHandler = () => {
+    console.log('userID:', userID);
     const validate = [];
     setErrorMessages([]);
     setSuccessMessage('');
@@ -46,6 +49,7 @@ const AddPet = (props) => {
         image: selectedImage,
       };
       dispatch(addPet(data));
+      addPetToDatabase(data, userID);
       setPetName('');
       setSelectedImage('');
       setSuccessMessage('Pet added successfully.');

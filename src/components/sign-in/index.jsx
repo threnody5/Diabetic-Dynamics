@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import Card from '../Card';
 import { Link, Navigate } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+} from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from './../../util/redux//loggedInStatusSlice';
+import { addUserID } from '../../util/redux/userIDSlice';
 import './styles.scss';
 
 const SignIn = () => {
@@ -30,7 +35,8 @@ const SignIn = () => {
       signInWithEmailAndPassword(authentication, emailAddress, password)
         .then((userCredentials) => {
           // User has been signed in.
-          // const user = userCredentials.user;
+          const user = userCredentials.user;
+          dispatch(addUserID(user.uid));
           dispatch(logIn());
         })
         .catch((err) => {
@@ -39,6 +45,22 @@ const SignIn = () => {
           window.alert('Incorrect password, please try again.');
         });
     }
+    //   setPersistence(authentication, browserLocalPersistence)
+    //     .then(() => {
+    //       dispatch(logIn());
+    //       return signInWithEmailAndPassword(
+    //         authentication,
+    //         emailAddress,
+    //         password
+    //       );
+    //     })
+    //     .catch((err) => {
+    //       const errorMessage = err.message;
+    //       console.log(errorMessage);
+    //       // validate.push('An error has occurred. Please try again.');
+    //       window.alert('Incorrect password, please try again.');
+    //     });
+    // }
     // console.log('Validate: ', validate);
     setErrorMessages(validate);
     // console.log('Error Messages: ', errorMessages);

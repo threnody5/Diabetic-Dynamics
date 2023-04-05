@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import AddPet from '../add-a-pet';
+import AddPetButton from '../add-pet-button';
 import Pets from '../pets';
 import './styles.scss';
 
@@ -13,7 +13,7 @@ const SignedIn = () => {
         <>
           <Pets />
           <div>
-            <AddPet />
+            <AddPetButton />
           </div>
         </>
       ) : (
