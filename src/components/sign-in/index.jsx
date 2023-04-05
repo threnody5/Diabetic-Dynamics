@@ -10,6 +10,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from './../../util/redux//loggedInStatusSlice';
 import { addUserID } from '../../util/redux/userIDSlice';
+import { loadPetsFromDatabase } from '../../api/read';
+import { addPet } from '../../util/redux/petInfoSlice';
 import './styles.scss';
 
 const SignIn = () => {
@@ -17,7 +19,9 @@ const SignIn = () => {
   const [password, setPassword] = useState('Temppassword1!');
   const [errorMessages, setErrorMessages] = useState([]);
   const dispatch = useDispatch();
-  const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
+  const loggedInStatus = useSelector(
+    (state) => state.loggedInStatus.loggedIn
+  );
 
   const logInHandler = (e) => {
     e.preventDefault();
@@ -32,7 +36,11 @@ const SignIn = () => {
       validate.push('Please enter a valid email address.');
     }
     if (validate.length === 0) {
-      signInWithEmailAndPassword(authentication, emailAddress, password)
+      signInWithEmailAndPassword(
+        authentication,
+        emailAddress,
+        password
+      )
         .then((userCredentials) => {
           // User has been signed in.
           const user = userCredentials.user;
@@ -64,6 +72,14 @@ const SignIn = () => {
     // console.log('Validate: ', validate);
     setErrorMessages(validate);
     // console.log('Error Messages: ', errorMessages);
+
+    (async () => {
+      const data = await loadPetsFromDatabase();
+      setTimeout(() => {
+        console.log(data);
+        dispatch(addPet(data));
+      }, 3000);
+    })();
   };
   return (
     <Card>
@@ -121,7 +137,8 @@ const SignIn = () => {
                 Log In
               </button>
               <div className='sign-in-link'>
-                Don't have an account? <Link to='/sign-up'>Sign In</Link>
+                Don't have an account?{' '}
+                <Link to='/sign-up'>Sign In</Link>
               </div>
               <div className='home-link'>
                 Click <Link to='/'>here</Link> to go back home

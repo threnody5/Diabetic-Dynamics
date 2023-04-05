@@ -10,7 +10,6 @@ export const userIDSlice = createSlice({
   reducers: {
     addUserID: (state, action) => {
       state.id = action.payload;
-      console.log(action.payload);
     },
   },
 });

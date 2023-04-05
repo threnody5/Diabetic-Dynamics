@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/landing-page';
 import SignInPage from './pages/sign-in-page';
@@ -10,8 +11,20 @@ import StoryOfMax from './pages/testimonials/MaxTestimonial';
 import StoryOfRover from './pages/testimonials/RoverTestimonial';
 import StoryOfCharlie from './pages/testimonials/CharlieTestimonial';
 import SignedInLandingPage from './pages/signed-in-landing-page';
+import { loadPetsFromDatabase } from './api/read';
+import { useDispatch } from 'react-redux';
+import { addPet } from './util/redux/petInfoSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   (async () => {
+  //     const data = await loadPetsFromDatabase();
+  //     console.log(data);
+  //     // dispatch(addPet(data));
+  //   })();
+  // });
+
   return (
     <>
       <Navigation />

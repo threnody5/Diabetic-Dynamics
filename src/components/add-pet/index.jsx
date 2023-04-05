@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from '../../util/redux/petInfoSlice';
 import { addPetToDatabase } from '../../api/write';
+import { uploadImage } from '../../api/storage';
 import './styles.scss';
 
 const AddPet = (props) => {
@@ -27,7 +28,7 @@ const AddPet = (props) => {
     setSelectedImage('');
   };
 
-  const addPetHandler = () => {
+  const addPetHandler = async () => {
     console.log('userID:', userID);
     const validate = [];
     setErrorMessages([]);
@@ -44,10 +45,14 @@ const AddPet = (props) => {
     }
 
     if (validate.length === 0) {
+      const file = inputFile.current.files[0];
+      const pictureURL = await uploadImage(file);
+
       const data = {
         name: petName,
-        image: selectedImage,
+        image: pictureURL,
       };
+
       dispatch(addPet(data));
       addPetToDatabase(data, userID);
       setPetName('');
@@ -75,7 +80,9 @@ const AddPet = (props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className='modal-header'>
-          <div className='modal-success-message'>{successMessage}</div>
+          <div className='modal-success-message'>
+            {successMessage}
+          </div>
           <div className='modal-error-messages'>
             {errorMessages.map((errorMessage, index) => {
               return (
