@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addPet } from '../../util/redux/petInfoSlice';
 import './styles.scss';
 
 const AddPetModal = (props) => {
   const [petName, setPetName] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
+  const dispatch = useDispatch();
 
   const handlePictureSelection = (e) => {
     const file = e.target.files[0];
@@ -17,6 +20,15 @@ const AddPetModal = (props) => {
   const clearFields = () => {
     setPetName('');
     setSelectedImage('');
+  };
+
+  const addPetHandler = () => {
+    const data = {
+      name: petName,
+      image: selectedImage,
+    };
+    dispatch(addPet(data));
+    props.onClose();
   };
 
   if (!props.show) {
@@ -71,7 +83,12 @@ const AddPetModal = (props) => {
           </div>
         </div>
         <div className='modal-button-container'>
-          <button className='modal-button'>Add Pet</button>
+          <button
+            className='modal-button'
+            onClick={addPetHandler}
+          >
+            Add Pet
+          </button>
           <button
             className='modal-button'
             onClick={() => {

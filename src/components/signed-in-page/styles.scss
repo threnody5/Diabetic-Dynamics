@@ -1,15 +1,15 @@
-// @import './../../styles/variables.scss';
+@import './../../styles/variables.scss';
 
-// .add-pet-button-container {
-//     height: 80vh;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
+.pet-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-//     .add-pet-button {
-//         @include button;
-//         width: 200px;
-//     }
+    .pet-card {
+        padding: 0 0.5rem 0 0.5rem;
 
-// }
+        h3 {
+            text-align: center;
+        }
+    }
+}

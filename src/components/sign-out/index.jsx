@@ -1,7 +1,7 @@
 import { authentication } from './../../api/FirebaseConfig';
 import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../util/redux/logged-in-status';
+import { logOut } from '../../util/redux/loggedInStatusSlice';
 import './styles.scss';
 
 const SignOut = () => {

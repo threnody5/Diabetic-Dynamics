@@ -1,12 +1,9 @@
 @import './../../styles/variables.scss';
 
 .card-container {
-    // background-image: $backdrop-gradient-color;
     background-color: #FCFCFC;
     @include box-shadow;
-    // box-shadow: 5px 5px 5px 0px gray;
-    width: 55%;
-    max-width: 1140px;
+    max-width: 800px;
     padding: 15px;
     margin: auto;
     display: flex;

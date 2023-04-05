@@ -4,7 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from './../../util/redux/logged-in-status';
+import { logIn } from './../../util/redux//loggedInStatusSlice';
 import './styles.scss';
 
 const SignIn = () => {
