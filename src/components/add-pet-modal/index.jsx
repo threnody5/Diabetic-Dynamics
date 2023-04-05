@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import './styles.scss';
 
-const Modal = (props) => {
+const AddPetModal = (props) => {
   const [petName, setPetName] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
-
-  if (!props.show) {
-    return null;
-  }
 
   const handlePictureSelection = (e) => {
     const file = e.target.files[0];
@@ -22,6 +18,10 @@ const Modal = (props) => {
     setPetName('');
     setSelectedImage('');
   };
+
+  if (!props.show) {
+    return null;
+  }
 
   return (
     <div
@@ -87,4 +87,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default AddPetModal;

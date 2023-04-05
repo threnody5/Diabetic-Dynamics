@@ -1,4 +1,4 @@
-import Modal from '../modal';
+import AddPetModal from '../add-pet-modal';
 import { useState } from 'react';
 import './styles.scss';
 
@@ -13,7 +13,7 @@ const AddPet = () => {
       >
         Add a new pet
       </button>
-      <Modal
+      <AddPetModal
         onClose={() => setShowModal(false)}
         show={showModal}
       />
