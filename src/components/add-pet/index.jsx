@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPet } from '../../util/redux/petInfoSlice';
 import './styles.scss';
 
-const AddPetModal = (props) => {
+const AddPet = (props) => {
   const [petName, setPetName] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
+  const [errorMessages, setErrorMessages] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
   const dispatch = useDispatch();
+  const inputFile = useRef();
 
   const handlePictureSelection = (e) => {
     const file = e.target.files[0];
@@ -23,12 +26,35 @@ const AddPetModal = (props) => {
   };
 
   const addPetHandler = () => {
-    const data = {
-      name: petName,
-      image: selectedImage,
-    };
-    dispatch(addPet(data));
-    props.onClose();
+    const validate = [];
+    setErrorMessages([]);
+    setSuccessMessage('');
+    if (petName === '') {
+      validate.push('Please enter a pet name.');
+    }
+    if (selectedImage === '') {
+      validate.push('Please select an image.');
+    }
+
+    if (validate.length > 0) {
+      setErrorMessages(validate);
+    }
+
+    if (validate.length === 0) {
+      const data = {
+        name: petName,
+        image: selectedImage,
+      };
+      dispatch(addPet(data));
+      setPetName('');
+      setSelectedImage('');
+      setSuccessMessage('Pet added successfully.');
+      inputFile.current.value = '';
+
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 3000);
+    }
   };
 
   if (!props.show) {
@@ -45,7 +71,16 @@ const AddPetModal = (props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className='modal-header'>
-          <h4 className='modal-title'>Add a Pet</h4>
+          <div className='modal-success-message'>{successMessage}</div>
+          <div className='modal-error-messages'>
+            {errorMessages.map((errorMessage, index) => {
+              return (
+                <div key={index}>
+                  <ul>{errorMessage}</ul>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className='modal-body'>
           <div className='modal-name-input'>
@@ -69,7 +104,7 @@ const AddPetModal = (props) => {
                   accept='image/*'
                   multiple={false}
                   onChange={handlePictureSelection}
-                  // ref={inputFile}
+                  ref={inputFile}
                 />
               </label>
               {selectedImage !== '' && (
@@ -94,6 +129,7 @@ const AddPetModal = (props) => {
             onClick={() => {
               props.onClose();
               clearFields();
+              setErrorMessages([]);
             }}
           >
             Close
@@ -104,4 +140,4 @@ const AddPetModal = (props) => {
   );
 };
 
-export default AddPetModal;
+export default AddPet;

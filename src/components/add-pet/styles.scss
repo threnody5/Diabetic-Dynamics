@@ -56,4 +56,14 @@
             padding: 0.3rem 0 0.3rem 0;
         }
     }
+
+    .modal-error-messages {
+        color: red;
+        font-weight: bold;
+    }
+
+    .modal-success-message {
+        color: green;
+        font-weight: bold;
+    }
 }
