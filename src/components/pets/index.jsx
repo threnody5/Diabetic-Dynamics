@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
-import Pet from './pet';
+import Pet from './pets-list/pet';
+import './styles.scss';
 
 const Pets = () => {
   const petInfo = useSelector((state) => state.petInfo.pet);
@@ -11,6 +12,7 @@ const Pets = () => {
             key={index}
             name={pet.name}
             image={pet.image}
+            id={pet.id}
           />
         );
       })}

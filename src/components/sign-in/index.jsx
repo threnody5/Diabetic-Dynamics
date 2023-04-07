@@ -108,7 +108,7 @@ const SignIn = () => {
           </div>
         </form>
       ) : (
-        <Navigate to='/signed-in' />
+        <Navigate to='/pets-list' />
       )}
     </Card>
   );

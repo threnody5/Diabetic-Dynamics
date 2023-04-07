@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/landing-page';
 import SignInPage from './pages/sign-in-page';
 import SignUpPage from './pages/sign-up-page';
-import SignedIn from './components/signed-in';
+import SignedIn from './components/pets/pets-list';
 import Navigation from './components/navigation';
 import PageNotFound from './pages/page-not-found';
 import HomeContents from './pages/home-contents';
@@ -11,20 +10,9 @@ import StoryOfMax from './pages/testimonials/MaxTestimonial';
 import StoryOfRover from './pages/testimonials/RoverTestimonial';
 import StoryOfCharlie from './pages/testimonials/CharlieTestimonial';
 import SignedInLandingPage from './pages/signed-in-landing-page';
-import { loadPetsFromDatabase } from './api/read';
-import { useDispatch } from 'react-redux';
-import { addPet } from './util/redux/petInfoSlice';
+import PetInfo from './components/pets/pets-list/pet/petInfo';
 
 function App() {
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   (async () => {
-  //     const data = await loadPetsFromDatabase();
-  //     console.log(data);
-  //     // dispatch(addPet(data));
-  //   })();
-  // });
-
   return (
     <>
       <Navigation />
@@ -63,8 +51,12 @@ function App() {
           element={<SignedIn />}
         />
         <Route
-          path='/signed-in'
+          path='/pets-list'
           element={<SignedInLandingPage />}
+        />
+        <Route
+          path='pets-list/:id'
+          element={<PetInfo />}
         />
         <Route
           path='*'
