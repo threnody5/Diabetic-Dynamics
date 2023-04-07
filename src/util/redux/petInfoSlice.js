@@ -9,8 +9,11 @@ export const petInfoSlice = createSlice({
     addPet: (state, action) => {
       state.pet.push(action.payload);
     },
+    loadPets: (state, action) => {
+      state.pet = action.payload;
+    },
   },
 });
 
-export const { addPet } = petInfoSlice.actions;
+export const { addPet, loadPets } = petInfoSlice.actions;
 export default petInfoSlice.reducer;

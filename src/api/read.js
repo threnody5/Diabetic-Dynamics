@@ -1,19 +1,14 @@
-import { getDatabase, ref, child, get } from 'firebase/database';
-import { v4 as uuid } from 'uuid';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const loadPetsFromDatabase = (userID) => {
-  const databaseRef = ref(getDatabase());
-  get(child(databaseRef, `${userID}/pets`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-      } else {
-        console.error('No data available.');
-        console.log(userID);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
+  const database = getDatabase();
+  try {
+    const arrayOfPets = ref(database, 'users/' + userID);
+    onValue(arrayOfPets, (snapshot) => {
+      const data = snapshot.val();
+      return data;
     });
-  // const petRef = ref(database, `${userID}/pets/${uuid()}`);
+  } catch (err) {
+    console.error(err);
+  }
 };
