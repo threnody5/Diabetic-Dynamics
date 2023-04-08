@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Card from '../../../../Card';
+import AddEntryButton from '../../../../add-entry-button';
 import './styles.scss';
 
 const PetInfo = () => {
@@ -46,6 +47,7 @@ const PetInfo = () => {
           </button>
         </div>
       </Card>
+      <AddEntryButton />
     </>
   );
 };
