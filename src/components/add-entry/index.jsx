@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addSugarLevelData } from '../../util/redux/sugarConcentrationSlice';
 import './styles.scss';
 
 const AddEntry = (props) => {
@@ -28,10 +29,14 @@ const AddEntry = (props) => {
   ];
 
   const addEntryHandler = () => {
-    console.log('Sugar Concentration: ', sugarConcentration);
-    console.log('Measured: ', measured);
-    console.log('Date: ', date);
-    console.log('Time: ', time);
+    const data = {
+      sugarConcentration: sugarConcentration,
+      measured: measured,
+      date: date,
+      time: time,
+    };
+
+    dispatch(addSugarLevelData(data));
     setSugarConcentration('');
     setMeasured('');
     setDate('');
