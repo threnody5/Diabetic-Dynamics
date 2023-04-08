@@ -1,69 +1,41 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPet } from '../../util/redux/petInfoSlice';
-import { addPetToDatabase } from '../../api/write';
-import { uploadImage } from '../../api/storage';
 import './styles.scss';
 
 const AddEntry = (props) => {
   const userID = useSelector((state) => state.userID.id);
-  const [petName, setPetName] = useState('');
-  const [selectedImage, setSelectedImage] = useState('');
+  const [sugarConcentration, setSugarConcentration] = useState(0);
+  const [measured, setMeasured] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const dispatch = useDispatch();
-  const inputFile = useRef();
 
-  const handlePictureSelection = (e) => {
-    const file = e.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = (e) => {
-      setSelectedImage(e.target.result);
-    };
-  };
+  const measuredList = [
+    {
+      value: 'Please select a value',
+    },
+    {
+      value: 'After breakfast',
+    },
+    {
+      value: 'After lunch',
+    },
+    {
+      value: 'After dinner',
+    },
+  ];
 
-  const clearFields = () => {
-    setPetName('');
-    setSelectedImage('');
-  };
-
-  const addPetHandler = async () => {
-    console.log('userID:', userID);
-    const validate = [];
-    setErrorMessages([]);
-    setSuccessMessage('');
-    if (petName === '') {
-      validate.push('Please enter a pet name.');
-    }
-    if (selectedImage === '') {
-      validate.push('Please select an image.');
-    }
-
-    if (validate.length > 0) {
-      setErrorMessages(validate);
-    }
-
-    if (validate.length === 0) {
-      const file = inputFile.current.files[0];
-      const pictureURL = await uploadImage(file);
-
-      const data = {
-        name: petName,
-        image: pictureURL,
-      };
-
-      dispatch(addPet(data));
-      addPetToDatabase(data, userID);
-      setPetName('');
-      setSelectedImage('');
-      setSuccessMessage('Pet added successfully.');
-      inputFile.current.value = '';
-
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 3000);
-    }
+  const addEntryHandler = () => {
+    console.log('Sugar Concentration: ', sugarConcentration);
+    console.log('Measured: ', measured);
+    console.log('Date: ', date);
+    console.log('Time: ', time);
+    setSugarConcentration('');
+    setMeasured('');
+    setDate('');
+    setTime('');
   };
 
   if (!props.show) {
@@ -72,7 +44,7 @@ const AddEntry = (props) => {
 
   return (
     <div
-      className='modal-container'
+      className='modal-container-add-entry'
       onClick={props.onClose}
     >
       <div
@@ -91,58 +63,81 @@ const AddEntry = (props) => {
             })}
           </div>
         </div>
+
         <div className='modal-body'>
-          <div className='modal-name-input'>
+          <div className='modal-sugar-concentration-input'>
             <label>
-              Pet Name:
+              Sugar Concentration
               <input
-                type='text'
-                className='pet-name-field'
-                onChange={(e) => setPetName(e.target.value)}
-                value={petName}
+                type='number'
+                title='e.g. 7.3'
+                value={sugarConcentration}
+                onChange={(e) => setSugarConcentration(e.target.value)}
               />
+              mmol/L
             </label>
           </div>
-          <div>
-            <fieldset className='modal-image-container'>
-              <legend>Picture:</legend>
+          <div className='modal-sugar-concentration-measured'>
+            <label>
+              Measured{' '}
+              <select
+                className='modal-sugar-concentration-measured-list'
+                title='Choose an option...'
+                value={measured}
+                onChange={(e) => setMeasured(e.target.value)}
+              >
+                {measuredList.map((item, i) => (
+                  <option
+                    key={i}
+                    value={item.value}
+                  >
+                    {item.value}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className='date-time-container'>
+            <div className='modal-sugar-concentration-date'>
               <label>
-                Select an image:{' '}
+                Date
                 <input
-                  type='file'
-                  accept='image/*'
-                  multiple={false}
-                  onChange={handlePictureSelection}
-                  ref={inputFile}
+                  type='date'
+                  title='Date administered'
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                 />
               </label>
-              {selectedImage !== '' && (
-                <img
-                  src={selectedImage}
-                  alt='Preview'
-                  width={200}
+            </div>
+            <div className='modal-sugar-concentration-time'>
+              <label>
+                Time
+                <input
+                  type='time'
+                  title='Time administered'
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
                 />
-              )}
-            </fieldset>
+              </label>
+            </div>
           </div>
-        </div>
-        <div className='modal-button-container'>
-          <button
-            className='modal-button'
-            onClick={addPetHandler}
-          >
-            Add Pet
-          </button>
-          <button
-            className='modal-button'
-            onClick={() => {
-              props.onClose();
-              clearFields();
-              setErrorMessages([]);
-            }}
-          >
-            Close
-          </button>
+          <div className='modal-button-container'>
+            <button
+              className='modal-button'
+              onClick={addEntryHandler}
+            >
+              Add Entry
+            </button>
+            <button
+              className='modal-button'
+              onClick={() => {
+                props.onClose();
+                setErrorMessages([]);
+              }}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 @import './../../styles/variables.scss';
 
-.modal-container {
+.modal-container-add-entry {
     position: fixed;
     left: 0;
     top: 0;
@@ -47,14 +47,45 @@
         }
     }
 
-    .modal-name-input {
+    .modal-sugar-concentration-input,
+    .modal-sugar-concentration-measured {
         border-bottom: 1px solid #eee;
-        padding-bottom: 1rem;
+        padding: 1rem 0 1rem 0;
 
         input {
+            width: 85%;
+            padding: 0.3rem 0 0.3rem 0;
+        }
+
+        select {
             width: 100%;
             padding: 0.3rem 0 0.3rem 0;
         }
+    }
+
+    .date-time-container {
+        display: flex;
+        justify-content: space-between;
+        width: 88%;
+
+        .modal-sugar-concentration-date {
+            padding: 1rem 0 1rem 0;
+
+            input {
+                width: 100%;
+                padding: 0.3rem 0 0.3rem 0;
+            }
+        }
+
+        .modal-sugar-concentration-time {
+            padding: 1rem 0 1rem 0;
+
+            input {
+                width: 150%;
+                padding: 0.3rem 0 0.3rem 0;
+            }
+        }
+
     }
 
     .modal-error-messages {

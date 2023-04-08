@@ -10,7 +10,9 @@ const AddEntryButton = () => {
       <button
         className='add-entry-button'
         onClick={() => setShowModal(true)}
-      ></button>
+      >
+        Add New Entry
+      </button>
       <AddEntry
         onClose={() => setShowModal(false)}
         show={showModal}
