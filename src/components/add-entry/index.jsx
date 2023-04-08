@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSugarLevelData } from '../../util/redux/sugarConcentrationSlice';
+import { useParams } from 'react-router-dom';
 import './styles.scss';
 
 const AddEntry = (props) => {
-  const userID = useSelector((state) => state.userID.id);
+  // const userID = useSelector((state) => state.userID.id);
   const [sugarConcentration, setSugarConcentration] = useState(0);
   const [measured, setMeasured] = useState('');
   const [date, setDate] = useState('');
@@ -12,6 +13,7 @@ const AddEntry = (props) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const dispatch = useDispatch();
+  const petID = useParams();
 
   const measuredList = [
     {
@@ -30,6 +32,7 @@ const AddEntry = (props) => {
 
   const addEntryHandler = () => {
     const data = {
+      id: petID.id,
       sugarConcentration: sugarConcentration,
       measured: measured,
       date: date,

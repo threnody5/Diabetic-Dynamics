@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Card from '../../../../Card';
 import AddEntryButton from '../../../../add-entry-button';
+import EntryList from '../../../../entry-list';
 import './styles.scss';
 
 const PetInfo = () => {
@@ -10,6 +11,9 @@ const PetInfo = () => {
   const [petImage, setPetImage] = useState('');
   const petID = useParams();
   const petInfo = useSelector((state) => state.petInfo.pet);
+  const sugarConcentrationEntries = useSelector(
+    (state) => state.sugarConcentration.sugarLevelData
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,6 +51,7 @@ const PetInfo = () => {
           </button>
         </div>
       </Card>
+      {sugarConcentrationEntries.length > 0 && <EntryList />}
       <AddEntryButton />
     </>
   );
