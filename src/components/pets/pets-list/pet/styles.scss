@@ -1,0 +1,14 @@
+@import './../../../../styles/variables.scss';
+
+.pet-card {
+    padding: 0 0.5rem 0 0.5rem;
+
+    h3 {
+        text-align: center;
+        color: $light-text-highlight-color;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+}

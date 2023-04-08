@@ -99,7 +99,7 @@ const SignIn = () => {
                 Log In
               </button>
               <div className='sign-in-link'>
-                Don't have an account? <Link to='/sign-up'>Sign In</Link>
+                Don't have an account? <Link to='/sign-up'>Sign Up</Link>
               </div>
               <div className='home-link'>
                 Click <Link to='/'>here</Link> to go back home

@@ -1,0 +1,19 @@
+@import './../../../../../styles/variables.scss';
+
+.selected-pet-card {
+    width: 200px;
+    padding: 0 0.5rem 0 0.5rem;
+
+    h3 {
+        text-align: center;
+    }
+
+    .go-back-button {
+        @include button;
+        &::before {
+            content: '<';
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+    }
+}

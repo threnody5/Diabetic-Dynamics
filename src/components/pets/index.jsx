@@ -5,7 +5,7 @@ import './styles.scss';
 const Pets = () => {
   const petInfo = useSelector((state) => state.petInfo.pet);
   return (
-    <div className='pet-card-container'>
+    <div className='pet-container'>
       {petInfo.map((pet, index) => {
         return (
           <Pet

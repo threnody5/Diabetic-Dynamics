@@ -11,7 +11,6 @@ export const petInfoSlice = createSlice({
     },
     loadPets: (state, action) => {
       state.pet = action.payload;
-      console.log(action.payload);
     },
   },
 });

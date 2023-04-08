@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import AddPetButton from '../../add-pet-button';
@@ -11,6 +11,9 @@ import { loadPets } from '../../../util/redux/petInfoSlice';
 const PetsList = () => {
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
   const userID = useSelector((state) => state.userID.id);
+  const currentPets = useSelector((state) => state.petInfo.pet);
+  // const test = currentPets;
+  console.log('Current Pets:', currentPets);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,13 +29,9 @@ const PetsList = () => {
         });
       });
       dispatch(loadPets(petsArray));
+      console.log('Database Pets: ', petsArray);
     });
-    // eslint-disable-next-line
-  }, []);
-
-  // useEffect(() => {
-  //   loadPetByID(userID);
-  // }, []);
+  }, [dispatch, userID]);
 
   return (
     <>

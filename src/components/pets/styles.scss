@@ -1,15 +1,8 @@
 @import './../../styles/variables.scss';
 
-.pet-card-container {
+.pet-container {
     display: flex;
+    margin: 2rem;
     flex-direction: row;
     flex-wrap: wrap;
-
-    .pet-card {
-        padding: 0 0.5rem 0 0.5rem;
-
-        h3 {
-            text-align: center;
-        }
-    }
 }
