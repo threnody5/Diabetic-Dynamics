@@ -1,6 +1,12 @@
 import { ref, onValue } from 'firebase/database';
 import { database } from './FirebaseConfig';
 
+/**
+ * Loads the pets information from the database.
+ * @param {string} userID
+ * @returns
+ * An array of objects containing the pets information, and the snapshot.key as an ID.
+ */
 export const loadPetsFromDatabase = (userID) => {
   try {
     const databaseRef = ref(database, '/users/' + userID + '/pets/');
@@ -21,13 +27,32 @@ export const loadPetsFromDatabase = (userID) => {
   }
 };
 
-export const loadPetByID = (userID) => {
-  const databaseRef = ref(database, '/users/' + userID + '/pets/');
-  onValue(databaseRef, (snapshot) => {
-    snapshot.forEach((childSnapShot) => {
-      // console.log('Child Key: ', childSnapShot.key);
-    });
-    // const data = snapshot.val();
-    // console.log('Load Pets From ID: ', data);
-  });
+/**
+ * Loads the blood sugar entries from the database.
+ * @param {string} userID
+ * String returned from the database when the user logs in.
+ * @param {string} petID
+ * String returned from useParams in URL when the user selects a pet.
+ * @returns
+ * An array of blood sugar entries for the selected pet.
+ */
+export const loadEntriesFromDatabase = (userID, petID) => {
+  const databaseRef = ref(
+    database,
+    `/users/${userID}/pets/${petID.id}/entries`
+  );
+  const entriesArray = [];
+  onValue(
+    databaseRef,
+    (snapshot) => {
+      snapshot.forEach((childSnapShot) => {
+        const childData = childSnapShot.val();
+        entriesArray.push({
+          ...childData,
+        });
+      });
+    },
+    { onlyOnce: true }
+  );
+  return entriesArray;
 };

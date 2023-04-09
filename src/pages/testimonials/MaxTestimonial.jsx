@@ -3,6 +3,9 @@ import Card from '../../components/Card';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
+/**
+ * Renders a testimonial for a dog owner about their positive experience with Diabetic Dynamics.
+ */
 class StoryOfMax extends React.Component {
   render() {
     return (

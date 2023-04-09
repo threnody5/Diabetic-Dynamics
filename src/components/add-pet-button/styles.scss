@@ -1,14 +1,12 @@
 @import './../../styles/variables.scss';
 
 .add-pet-button-container {
-    // height: 300px;
     display: flex;
     justify-content: center;
     position: sticky;
     bottom: 0;
 
     .add-pet-button {
-        // height: 20px;
         @include button;
         width: 200px;
     }

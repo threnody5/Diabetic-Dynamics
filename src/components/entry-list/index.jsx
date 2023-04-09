@@ -5,6 +5,12 @@ import { useParams } from 'react-router-dom';
 import EntryItem from './entry-item';
 import './styles.scss';
 
+/**
+ * Displays a list of sugar concentration entries, that are filtered by the petID.
+ * @returns
+ * - If no entries are found, returns a message of "No Data".
+ * - Otherwise, returns the list of sugar concentration entries for the user.
+ */
 const EntryList = () => {
   const [dataList, setDataList] = useState([]);
   const petID = useParams();
@@ -19,6 +25,7 @@ const EntryList = () => {
     setDataList(matchingEntries);
   }, [sugarConcentrationEntries, petID.id]);
 
+  // If dataList array is empty, displays a "No Data" message to the user.
   if (dataList.length === 0) {
     return (
       <>
@@ -28,15 +35,13 @@ const EntryList = () => {
       </>
     );
   }
+  // If dataList is not empty, displays a list of the entries to the user.
   return (
     <>
       <Card>
         {dataList.map((data, index) => {
           return (
-            <div
-              //   className='entry-list-container'
-              key={index}
-            >
+            <div key={index}>
               <EntryItem data={data} />
             </div>
           );

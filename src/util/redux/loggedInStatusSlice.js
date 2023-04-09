@@ -4,6 +4,12 @@ const initialState = {
   loggedIn: false,
 };
 
+/**
+ * Defined slice for managing the users logged in status.
+ * - Slice contains two reducers: logIn and logOut.
+ * - When logIn is called, loggedIn property is to true.
+ * - When logOut is called, loggedOut property is to false.
+ */
 export const loggedInSlice = createSlice({
   name: 'loggedInStatus',
   initialState,
@@ -13,7 +19,6 @@ export const loggedInSlice = createSlice({
     },
     logOut: (state) => {
       state.loggedIn = false;
-      console.log('Logged Out slice fires');
     },
   },
 });

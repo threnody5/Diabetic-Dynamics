@@ -8,6 +8,12 @@ import { logIn } from './../../util/redux//loggedInStatusSlice';
 import { addUserID } from '../../util/redux/userIDSlice';
 import './styles.scss';
 
+/**
+ * Component for handling user sign-in requests.
+ * @returns
+ * - If the email address and password are correct, the user will be redirected to to the pets-list page.
+ * - If the email address and password are incorrect, the user will be informed of the errors.
+ */
 const SignIn = () => {
   const [emailAddress, setEmailAddress] = useState('test@test.com');
   const [password, setPassword] = useState('Temppassword1!');
@@ -15,6 +21,12 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
+  /**
+   * Handler function for when the user clicks the "Log In" button.
+   * @param {*} e
+   * - Event is passed in to prevent default browser behavior on the form submission.
+   * - Email address and password are validate with checks.
+   */
   const logInHandler = (e) => {
     e.preventDefault();
     const validate = [];

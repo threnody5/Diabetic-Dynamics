@@ -2,6 +2,11 @@ import AddEntry from '../add-entry';
 import { useState } from 'react';
 import './styles.scss';
 
+/**
+ * Controls the modal overlay for adding a new entry for the user.
+ * @returns
+ * Returns a button for the user, toggling the modal overlay.
+ */
 const AddEntryButton = () => {
   const [showModal, setShowModal] = useState(false);
 

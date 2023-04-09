@@ -5,6 +5,13 @@ import { useParams } from 'react-router-dom';
 import { addEntryToDatabase } from '../../api/write';
 import './styles.scss';
 
+/**
+ * Component for the user to add a blood-glucose entry to the database.
+ * @param {boolean} props
+ * Boolean for displaying the modal form.
+ * @returns
+ * Returns the JSX form for adding the entry to the database.
+ */
 const AddEntry = (props) => {
   const userID = useSelector((state) => state.userID.id);
   const [sugarConcentration, setSugarConcentration] = useState('');
@@ -31,6 +38,11 @@ const AddEntry = (props) => {
     },
   ];
 
+  /**
+   * Adds the entered information to the blood-glucose entries.
+   * - If all checks aren't passed, error message is displayed informing the user.
+   * - If all checks are passed, information is stored in redux state, and in the database.
+   */
   const addEntryHandler = () => {
     const validate = [];
     setErrorMessages([]);
@@ -78,6 +90,17 @@ const AddEntry = (props) => {
     }
   };
 
+  /**
+   * Clears the fields for the user when the close button is clicked.
+   */
+  const clearFields = () => {
+    setErrorMessages([]);
+    setSugarConcentration('');
+    setMeasured('');
+    setDate('');
+    setTime('');
+  };
+
   if (!props.show) {
     return null;
   }
@@ -92,7 +115,9 @@ const AddEntry = (props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className='modal-header'>
+          {/* Success Message when the information is stored. */}
           <div className='modal-success-message'>{successMessage}</div>
+          {/* Error Messages when the entered information doesn't pass the checks. */}
           <div className='modal-error-messages'>
             {errorMessages.map((errorMessage, index) => {
               return (
@@ -105,6 +130,7 @@ const AddEntry = (props) => {
         </div>
 
         <div className='modal-body'>
+          {/* Form for input of sugar concentration. */}
           <div className='modal-sugar-concentration-input'>
             <label>
               Sugar Concentration
@@ -117,6 +143,7 @@ const AddEntry = (props) => {
               mmol/L
             </label>
           </div>
+          {/* Form for input of when the blood was tested, in relation to pets most recent meal. */}
           <div className='modal-sugar-concentration-measured'>
             <label>
               Measured{' '}
@@ -138,6 +165,7 @@ const AddEntry = (props) => {
             </label>
           </div>
           <div className='date-time-container'>
+            {/* Form for input of the date the blood sugar was tested.  */}
             <div className='modal-sugar-concentration-date'>
               <label>
                 Date
@@ -149,6 +177,7 @@ const AddEntry = (props) => {
                 />
               </label>
             </div>
+            {/* Form for input of the time the blood sugar was tested. */}
             <div className='modal-sugar-concentration-time'>
               <label>
                 Time
@@ -162,17 +191,19 @@ const AddEntry = (props) => {
             </div>
           </div>
           <div className='modal-button-container'>
+            {/* Button which handles adding the data to the redux state, and the database. */}
             <button
               className='modal-button'
               onClick={addEntryHandler}
             >
               Add Entry
             </button>
+            {/* Button to close the modal, clearing the input fields. */}
             <button
               className='modal-button'
               onClick={() => {
                 props.onClose();
-                setErrorMessages([]);
+                clearFields();
               }}
             >
               Close

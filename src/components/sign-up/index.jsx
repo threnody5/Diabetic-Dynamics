@@ -22,6 +22,9 @@ export default function SignUp() {
 
   /**
    * Function that is invoked when the user clicks the Create Account button.
+   * @param {*} e
+   * - Event is passed in to prevent default browser behavior on the form submission.
+   * @returns
    * - If all checks are successful, creates a new account on Firebase for the user.
    * - If account creation fails, the user will be prompted with the error message.
    */
@@ -81,6 +84,7 @@ export default function SignUp() {
       <form className='sign-up-container'>
         <h1 className='sign-up-text'>Sign up</h1>
         <div className='error-messages-container'>
+          {/* Error Messages when the entered information doesn't pass the checks. */}
           {errorMessages.length > 0 && (
             <div>
               <h3>Invalid Data:</h3>
@@ -94,6 +98,7 @@ export default function SignUp() {
         </div>
         <div className='input-container'>
           <div>
+            {/* Form for input of email address. */}
             <label className='label-text'>
               Email Address:
               <div>
@@ -109,6 +114,7 @@ export default function SignUp() {
             </label>
           </div>
           <div>
+            {/* Form for input of password. */}
             <label className='label-text'>
               Password:
               <div>
@@ -124,6 +130,7 @@ export default function SignUp() {
             </label>
           </div>
           <div>
+            {/* Form for input of re-entered password. */}
             <label className='label-text'>
               Re-enter Password:
               <div>
@@ -139,15 +146,18 @@ export default function SignUp() {
             </label>
           </div>
           <div className='button-container'>
+            {/* Buttons which handles the creation of the account for the user. */}
             <button
               className='create-account-button'
               onClick={(e) => createAccount(e)}
             >
               Create Account
             </button>
+            {/* Link for the user to navigate to the sign in page.  */}
             <div className='sign-in-link'>
               Already have an account? <Link to='/sign-in'>Sign In</Link>
             </div>
+            {/* Link for the user to navigate to the home page. */}
             <div className='home-link'>
               Click <Link to='/'>here</Link> to go back home
             </div>
