@@ -1,14 +1,5 @@
 import { getDatabase, ref, set } from 'firebase/database';
-// import { database } from './FirebaseConfig';
 import { v4 as uuid } from 'uuid';
-
-// export const addPetToDatabase = (data, userID) => {
-//   const database = getDatabase();
-//   set(ref(database, `users/${userID}/pets/${uuid()}--${data.name}`), {
-//     name: data.name,
-//     image: data.image,
-//   });
-// };
 
 export const addPetToDatabase = (data, userID) => {
   const database = getDatabase();
@@ -16,4 +7,24 @@ export const addPetToDatabase = (data, userID) => {
   set(ref(database, `users/${userID}/pets/${uuid()}--${data.name}`), {
     ...updatedData,
   });
+};
+
+export const addEntryToDatabase = (data, userID, petID) => {
+  const database = getDatabase();
+  const updatedData = {
+    ...data,
+    sugarConcentration: data.sugarConcentration,
+    measured: data.measured,
+    date: data.date,
+    time: data.time,
+  };
+  set(
+    ref(
+      database,
+      `users/${userID}/pets/${petID.id}/entries/${data.date}/${data.time}`
+    ),
+    {
+      ...updatedData,
+    }
+  );
 };

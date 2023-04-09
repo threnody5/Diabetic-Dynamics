@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSugarLevelData } from '../../util/redux/sugarConcentrationSlice';
 import { useParams } from 'react-router-dom';
+import { addEntryToDatabase } from '../../api/write';
 import './styles.scss';
 
 const AddEntry = (props) => {
-  // const userID = useSelector((state) => state.userID.id);
-  const [sugarConcentration, setSugarConcentration] = useState(0);
+  const userID = useSelector((state) => state.userID.id);
+  const [sugarConcentration, setSugarConcentration] = useState('');
   const [measured, setMeasured] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -31,19 +32,50 @@ const AddEntry = (props) => {
   ];
 
   const addEntryHandler = () => {
-    const data = {
-      id: petID.id,
-      sugarConcentration: sugarConcentration,
-      measured: measured,
-      date: date,
-      time: time,
-    };
+    const validate = [];
+    setErrorMessages([]);
 
-    dispatch(addSugarLevelData(data));
-    setSugarConcentration('');
-    setMeasured('');
-    setDate('');
-    setTime('');
+    if (sugarConcentration.length === 0) {
+      validate.push('Please enter a value for blood-glucose level.');
+    }
+
+    if (measured === '') {
+      validate.push('Please select a value for measured meal.');
+    }
+
+    if (date === '') {
+      validate.push('Please select a date.');
+    }
+
+    if (time === '') {
+      validate.push('Please select a time.');
+    }
+
+    if (validate.length === 0) {
+      const data = {
+        id: petID.id,
+        sugarConcentration: sugarConcentration,
+        measured: measured,
+        date: date,
+        time: time,
+      };
+
+      setSuccessMessage('Entry successfully saved.');
+      dispatch(addSugarLevelData(data));
+      addEntryToDatabase(data, userID, petID);
+      setSugarConcentration('');
+      setMeasured('');
+      setDate('');
+      setTime('');
+
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 2500);
+    }
+
+    if (validate.length > 0) {
+      setErrorMessages(validate);
+    }
   };
 
   if (!props.show) {
@@ -94,9 +126,9 @@ const AddEntry = (props) => {
                 value={measured}
                 onChange={(e) => setMeasured(e.target.value)}
               >
-                {measuredList.map((item, i) => (
+                {measuredList.map((item, index) => (
                   <option
-                    key={i}
+                    key={index}
                     value={item.value}
                   >
                     {item.value}
