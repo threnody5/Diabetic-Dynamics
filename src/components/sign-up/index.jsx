@@ -1,12 +1,9 @@
-/** @format */
-
-import './styles.scss';
-
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
 import Card from '../Card';
+import './styles.scss';
 
 /**
  * Sign in function for Firebase Authentication.

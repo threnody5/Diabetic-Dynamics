@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { addPetToDatabase } from '../../api/write';
+import * as database from './../../api';
 import { uploadImage } from '../../api/storage';
 import './styles.scss';
 
@@ -70,7 +70,7 @@ const AddPet = (props) => {
         image: pictureURL,
       };
 
-      addPetToDatabase(data, userID);
+      database.addPetToDatabase(data, userID);
       // TODO: Load pets from the database, to retrieve the pet ID's.
       // loadPetsFromDatabase(userID);
       setPetName('');

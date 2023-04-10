@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import AddPetButton from '../../add-pet-button';
 import Pets from '..';
-import { loadPetsFromDatabase } from '../../../api/read';
+import * as database from './../../../api';
 import { loadPets } from '../../../util/redux/petInfoSlice';
 
 /**
@@ -19,7 +19,8 @@ const PetsList = () => {
 
   // TODO: state should update when the user adds a new pet, allowing the user to go to the selected pets page.
   useEffect(() => {
-    loadPetsFromDatabase(userID)
+    database
+      .loadPetsFromDatabase(userID)
       .then((petsArray) => {
         dispatch(loadPets(petsArray));
       })

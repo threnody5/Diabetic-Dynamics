@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Card from '../../../../Card';
 import AddEntryButton from '../../../../add-entry-button';
 import EntryList from '../../../../entry-list';
-import { loadEntriesFromDatabase } from '../../../../../api/read';
+import * as database from './../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
 import { Navigate } from 'react-router-dom';
 import './styles.scss';
@@ -37,7 +37,8 @@ const PetInfo = () => {
       }
     });
 
-    loadEntriesFromDatabase(userID, petID)
+    database
+      .loadEntriesFromDatabase(userID, petID)
       .then((entriesArray) => {
         const combinedObject = Object.assign({}, ...entriesArray);
         const flattenedArray = Object.values(combinedObject).flat();

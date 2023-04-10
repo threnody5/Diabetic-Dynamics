@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSugarLevelData } from '../../util/redux/sugarConcentrationSlice';
 import { useParams } from 'react-router-dom';
-import { addEntryToDatabase } from '../../api/write';
+import * as database from './../../api';
 import './styles.scss';
 
 /**
@@ -74,7 +74,7 @@ const AddEntry = (props) => {
 
       setSuccessMessage('Entry successfully saved.');
       dispatch(addSugarLevelData(data));
-      addEntryToDatabase(data, userID, petID);
+      database.addEntryToDatabase(data, userID, petID);
       setSugarConcentration('');
       setMeasured('');
       setDate('');
