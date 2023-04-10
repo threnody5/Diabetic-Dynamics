@@ -62,9 +62,7 @@ export default function SignUp() {
       setErrorMessages([]);
       // If all checks are successful, creates a new account with the email and password provided.
       createUserWithEmailAndPassword(authentication, emailAddress, password)
-        .then((userCredentials) => {
-          // const user = userCredentials.user;
-          // console.log(user);
+        .then(() => {
           window.alert('Account created successfully!');
           setEmailAddress('');
           setPassword('');

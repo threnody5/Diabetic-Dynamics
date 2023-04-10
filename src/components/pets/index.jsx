@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import Pet from './pets-list/pet';
 import './styles.scss';
 
@@ -11,24 +12,30 @@ import './styles.scss';
  */
 const Pets = () => {
   const petInfo = useSelector((state) => state.petInfo.pet);
-  console.log('Pet Info', petInfo);
+  const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
   return (
     <>
-      {petInfo.length === 0 ? (
-        <div>Loading...</div>
+      {loggedInStatus ? (
+        <>
+          {petInfo.length === 0 ? (
+            <div>Loading...</div>
+          ) : (
+            <div className='pet-container'>
+              {petInfo.map((pet, index) => {
+                return (
+                  <Pet
+                    key={index}
+                    name={pet.name}
+                    image={pet.image}
+                    id={pet.id}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </>
       ) : (
-        <div className='pet-container'>
-          {petInfo.map((pet, index) => {
-            return (
-              <Pet
-                key={index}
-                name={pet.name}
-                image={pet.image}
-                id={pet.id}
-              />
-            );
-          })}
-        </div>
+        <Navigate to='/' />
       )}
     </>
   );

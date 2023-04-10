@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from '../../util/redux/petInfoSlice';
 import { addPetToDatabase } from '../../api/write';
+import { loadPetsFromDatabase } from '../../api/read';
 import { uploadImage } from '../../api/storage';
 import './styles.scss';
 
@@ -18,7 +19,9 @@ const AddPet = (props) => {
   const [selectedImage, setSelectedImage] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
-  const dispatch = useDispatch();
+  // const [localPetList, setLocalPetList] = useState([]);
+  // const petInfo = useSelector((state) => state.petInfo.pet);
+  // const dispatch = useDispatch();
   const inputFile = useRef();
 
   /**
@@ -73,8 +76,10 @@ const AddPet = (props) => {
         image: pictureURL,
       };
 
-      dispatch(addPet(data));
+      // dispatch(addPet(data));
       addPetToDatabase(data, userID);
+      // loadPetsFromDatabase(userID);
+      // setLocalPetList(petInfo);
       setPetName('');
       setSelectedImage('');
       setSuccessMessage('Pet added successfully.');

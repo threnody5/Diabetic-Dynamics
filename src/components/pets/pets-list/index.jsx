@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import AddPetButton from '../../add-pet-button';
-import { database } from '../../../api/FirebaseConfig';
-import { ref, onValue } from 'firebase/database';
 import Pets from '..';
-// import { loadPetsFromDatabase } from '../../../api/read';
+import { loadPetsFromDatabase } from '../../../api/read';
 import { loadPets } from '../../../util/redux/petInfoSlice';
 
 /**
@@ -15,26 +13,25 @@ import { loadPets } from '../../../util/redux/petInfoSlice';
  * - If the user is not logged in, navigates them back to the Home page.
  */
 const PetsList = () => {
+  const [isInitialized, setIsInitialized] = useState(false);
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
+  // const petInfo = useSelector((state) => state.petInfo.pet);
   const userID = useSelector((state) => state.userID.id);
   const dispatch = useDispatch();
 
+  // TODO: state should update when the user adds a new pet, allowing the user to go to the selected pets page.
   useEffect(() => {
-    // const petsArrayTest = loadPetsFromDatabase(userID);
-    const databaseRef = ref(database, '/users/' + userID + '/pets/');
-    const petsArray = [];
-    onValue(databaseRef, (snapshot) => {
-      snapshot.forEach((childSnapShot) => {
-        const childKey = childSnapShot.key;
-        const childData = childSnapShot.val();
-        petsArray.push({
-          ...childData,
-          id: childKey,
+    if (!isInitialized) {
+      loadPetsFromDatabase(userID)
+        .then((petsArray) => {
+          dispatch(loadPets(petsArray));
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      });
-      dispatch(loadPets(petsArray));
-    });
-  }, [dispatch, userID]);
+      setIsInitialized(true);
+    }
+  }, [isInitialized, userID, dispatch]);
 
   return (
     <>

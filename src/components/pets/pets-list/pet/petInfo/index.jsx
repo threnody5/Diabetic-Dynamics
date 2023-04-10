@@ -6,6 +6,7 @@ import AddEntryButton from '../../../../add-entry-button';
 import EntryList from '../../../../entry-list';
 import { loadEntriesFromDatabase } from '../../../../../api/read';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
+import { Navigate } from 'react-router-dom';
 import './styles.scss';
 
 /**
@@ -21,6 +22,7 @@ const PetInfo = () => {
   const [petName, setPetName] = useState('');
   const [petImage, setPetImage] = useState('');
   const petID = useParams();
+  const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
   const petInfo = useSelector((state) => state.petInfo.pet);
   const sugarConcentrationEntries = useSelector(
     (state) => state.sugarConcentration.sugarLevelData
@@ -34,15 +36,16 @@ const PetInfo = () => {
         setPetImage(pet.image);
       }
     });
-    const entries = loadEntriesFromDatabase(userID, petID);
-    const entriesArray = [];
-    entries.forEach((entry) => {
-      entriesArray.push(entry);
-    });
-    const combinedObject = Object.assign({}, ...entriesArray);
-    const flattenedArray = Object.values(combinedObject).flat();
 
-    dispatch(loadEntries(flattenedArray));
+    loadEntriesFromDatabase(userID, petID)
+      .then((entriesArray) => {
+        const combinedObject = Object.assign({}, ...entriesArray);
+        const flattenedArray = Object.values(combinedObject).flat();
+        dispatch(loadEntries(flattenedArray));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     // eslint-disable-next-line
   }, []);
 
@@ -54,28 +57,34 @@ const PetInfo = () => {
   };
   return (
     <>
-      <Card>
-        <div className='selected-pet-card'>
-          <div>
-            <h3>{petName}</h3>
-          </div>
-          <div>
-            <img
-              src={petImage}
-              width={200}
-              alt=''
-            />
-          </div>
-          <button
-            className='go-back-button'
-            onClick={navigateHandler}
-          >
-            Go back
-          </button>
-        </div>
-      </Card>
-      {sugarConcentrationEntries.length > 0 && <EntryList />}
-      <AddEntryButton />
+      {loggedInStatus ? (
+        <>
+          <Card>
+            <div className='selected-pet-card'>
+              <div>
+                <h3>{petName}</h3>
+              </div>
+              <div>
+                <img
+                  src={petImage}
+                  width={200}
+                  alt=''
+                />
+              </div>
+              <button
+                className='go-back-button'
+                onClick={navigateHandler}
+              >
+                Go back
+              </button>
+            </div>
+          </Card>
+          {sugarConcentrationEntries.length > 0 && <EntryList />}
+          <AddEntryButton />
+        </>
+      ) : (
+        <Navigate to='/' />
+      )}
     </>
   );
 };
