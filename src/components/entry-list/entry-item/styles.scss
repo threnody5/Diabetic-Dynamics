@@ -1,14 +1,28 @@
 .entry-list-container {
-    // display: flex;
-    // flex-direction: column;
     width: 100%;
-    
-    
+
     .entry-list-items {
         background-color: #69d3cf;
-        padding: 0.5rem;
-        width: 100%;
-        // display: flex;
-    // justify-content: space-between;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+        width: calc(100% - 4rem);
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+
+        .entry-item-date {
+            flex: 1;
+        }
+
+        .entry-item-time {
+            flex: 1;
+        }
+
+        .entry-item-measured {
+            flex: 1;
+        }
+
+        .entry-item-sugar-concentration {
+            margin-right: 0.3rem;
+        }
     }
 }

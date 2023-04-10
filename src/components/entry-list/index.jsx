@@ -39,13 +39,18 @@ const EntryList = () => {
   return (
     <>
       <Card>
-        {dataList.map((data, index) => {
-          return (
-            <div key={index}>
-              <EntryItem data={data} />
-            </div>
-          );
-        })}
+        <div className='entry-list-container'>
+          {dataList.map((data, index) => {
+            return (
+              <div
+                className='entry-list-item'
+                key={index}
+              >
+                <EntryItem data={data} />
+              </div>
+            );
+          })}
+        </div>
       </Card>
     </>
   );

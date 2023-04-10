@@ -1,2 +1,6 @@
+@import './../../styles/variables.scss';
 
-
+.entry-list-container {
+    display: flex;
+    flex-direction: column;
+}
