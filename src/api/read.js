@@ -8,23 +8,33 @@ import { database } from './FirebaseConfig';
  * An array of objects containing the pets information, and the snapshot.key as an ID.
  */
 export const loadPetsFromDatabase = (userID) => {
-  try {
-    const databaseRef = ref(database, '/users/' + userID + '/pets/');
-    const petsArray = [];
-    onValue(databaseRef, (snapshot) => {
-      snapshot.forEach((childSnapShot) => {
-        const childKey = childSnapShot.key;
-        const childData = childSnapShot.val();
-        petsArray.push({
-          ...childData,
-          id: childKey,
+  return new Promise((resolve, reject) => {
+    try {
+      const databaseRef = ref(database, `/users/${userID}/pets/`);
+      onValue(databaseRef, (snapshot) => {
+        const petsArray = [];
+        snapshot.forEach((childSnapShot) => {
+          try {
+            const childKey = childSnapShot.key;
+            const childData = childSnapShot.val();
+            if (typeof childData === 'object' && childData !== null) {
+              petsArray.push({
+                ...childData,
+                id: childKey,
+              });
+            }
+          } catch (err) {
+            console.error(err);
+          }
         });
+        console.log('Pets Array from Load Pets From Database: ', petsArray);
+        resolve(petsArray);
       });
-    });
-    return petsArray;
-  } catch (err) {
-    console.error(err);
-  }
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
+  });
 };
 
 /**
@@ -37,22 +47,25 @@ export const loadPetsFromDatabase = (userID) => {
  * An array of blood sugar entries for the selected pet.
  */
 export const loadEntriesFromDatabase = (userID, petID) => {
-  const databaseRef = ref(
-    database,
-    `/users/${userID}/pets/${petID.id}/entries`
-  );
-  const entriesArray = [];
-  onValue(
-    databaseRef,
-    (snapshot) => {
-      snapshot.forEach((childSnapShot) => {
-        const childData = childSnapShot.val();
-        entriesArray.push({
-          ...childData,
+  return new Promise((resolve, reject) => {
+    try {
+      const databaseRef = ref(
+        database,
+        `/users/${userID}/pets/${petID.id}/entries`
+      );
+      const entriesArray = [];
+      onValue(databaseRef, (snapshot) => {
+        snapshot.forEach((childSnapShot) => {
+          const childData = childSnapShot.val();
+          entriesArray.push({
+            ...childData,
+          });
         });
+        resolve(entriesArray);
       });
-    },
-    { onlyOnce: true }
-  );
-  return entriesArray;
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
+  });
 };
