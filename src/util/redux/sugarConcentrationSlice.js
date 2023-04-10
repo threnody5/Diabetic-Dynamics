@@ -17,7 +17,6 @@ export const sugarConcentrationSlice = createSlice({
     },
     loadEntries: (state, action) => {
       state.sugarLevelData = action.payload;
-      console.log('Entries from state: ', action.payload);
     },
   },
 });
