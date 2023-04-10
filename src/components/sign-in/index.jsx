@@ -3,9 +3,7 @@ import Card from '../Card';
 import { Link, Navigate } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from './../../util/redux//loggedInStatusSlice';
-import { addUserID } from '../../util/redux/userIDSlice';
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
 /**
@@ -18,7 +16,6 @@ const SignIn = () => {
   const [emailAddress, setEmailAddress] = useState('test@test.com');
   const [password, setPassword] = useState('Temppassword1!');
   const [errorMessages, setErrorMessages] = useState([]);
-  const dispatch = useDispatch();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
   /**
@@ -43,9 +40,6 @@ const SignIn = () => {
       signInWithEmailAndPassword(authentication, emailAddress, password)
         .then((userCredentials) => {
           // User has been signed in.
-          const user = userCredentials.user;
-          dispatch(addUserID(user.uid));
-          dispatch(logIn());
         })
         .catch((err) => {
           // const errorMessage = err.message;

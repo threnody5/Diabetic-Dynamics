@@ -1,7 +1,5 @@
 import { authentication } from './../../api/FirebaseConfig';
 import { signOut } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
-import { logOut } from '../../util/redux/loggedInStatusSlice';
 import './styles.scss';
 
 /**
@@ -12,8 +10,6 @@ import './styles.scss';
  * A button that triggers the sign-out handler.
  */
 const SignOut = () => {
-  const dispatch = useDispatch();
-
   /**
    * Handler function for the sign-out process.
    * Call made to Firebase Auth API to sign the user out.
@@ -21,9 +17,7 @@ const SignOut = () => {
    */
   const signOutHandler = () => {
     signOut(authentication)
-      .then(() => {
-        dispatch(logOut());
-      })
+      .then(() => {})
       .catch((err) => {
         console.error(err);
       });
