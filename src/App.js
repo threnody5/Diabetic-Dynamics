@@ -11,10 +11,12 @@ import StoryOfRover from './pages/testimonials/RoverTestimonial';
 import StoryOfCharlie from './pages/testimonials/CharlieTestimonial';
 import SignedInLandingPage from './pages/signed-in-landing-page';
 import PetInfo from './components/pets/pets-list/pet/petInfo';
+import { AuthState } from './util/auth-state';
 
 function App() {
   return (
     <>
+      <AuthState />
       <Navigation />
       <Routes>
         <Route
