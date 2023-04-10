@@ -16,26 +16,34 @@ export default function Navigation() {
   return (
     <div className='container'>
       <span className='webpage-name'>Diabetic Dynamics</span>
-      <span className='button-container'>
-        {loggedInStatus ? (
+      {/* <span className='button-container'> */}
+      {loggedInStatus ? (
+        <>
+          <button
+            className='button-pets-list'
+            onClick={() => navigate('pets-list')}
+          >
+            Pets List
+          </button>
           <SignOut />
-        ) : (
-          <>
-            <button
-              className='button-sign-in'
-              onClick={() => navigate('sign-in')}
-            >
-              Sign-In
-            </button>
-            <button
-              className='button-sign-up'
-              onClick={() => navigate('sign-up')}
-            >
-              Sign Up
-            </button>
-          </>
-        )}
-      </span>
+        </>
+      ) : (
+        <>
+          <button
+            className='button-sign-in'
+            onClick={() => navigate('sign-in')}
+          >
+            Sign-In
+          </button>
+          <button
+            className='button-sign-up'
+            onClick={() => navigate('sign-up')}
+          >
+            Sign Up
+          </button>
+        </>
+      )}
+      {/* </span> */}
     </div>
   );
 }

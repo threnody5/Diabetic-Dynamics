@@ -9,19 +9,11 @@
     border-bottom: 1px solid black;
 
     .button-sign-in,
-    .button-sign-up {
-        font-weight: bold;
-        padding: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        background-color: $button-backdrop-color;
-        border: 1px solid black;
-        margin: 0 0 0 1rem;
-
-        a {
-            text-decoration: none;
-            color: #000;
-        }
+    .button-sign-up,
+    .button-pets-list {
+        @include button;
+        width: 15% !important;
+        margin-right: 0.5rem;
     }
 
     .navigation-link-text {
@@ -34,6 +26,7 @@
     }
 
     .webpage-name {
+        flex: 1;
         padding-top: 0.7rem;
         font-weight: bold;
         color: $dark-text-color;
