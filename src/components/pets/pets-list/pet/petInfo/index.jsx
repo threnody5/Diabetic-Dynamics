@@ -62,7 +62,7 @@ const PetInfo = () => {
           <Card>
             <div className='selected-pet-card'>
               <div>
-                <h3>{petName}</h3>
+                <h3>{petName.toUpperCase()}</h3>
               </div>
               <div>
                 <img

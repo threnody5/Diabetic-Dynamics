@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     position: sticky;
-    bottom: 0;
+    bottom: 20px;
 
     .add-entry-button {
         @include button;

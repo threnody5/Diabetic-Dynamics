@@ -1,11 +1,11 @@
 @import './../../../../../styles/variables.scss';
 
 .selected-pet-card {
-    width: 200px;
     padding: 0 0.5rem 0 0.5rem;
 
     h3 {
         text-align: center;
+        color: $light-text-highlight-color;
     }
 
     .go-back-button {
@@ -15,5 +15,9 @@
             margin-right: 1rem;
             font-weight: bold;
         }
+    }
+
+    img {
+        margin-bottom: 1rem;
     }
 }
