@@ -1,8 +1,6 @@
 import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPet } from '../../util/redux/petInfoSlice';
+import { useSelector } from 'react-redux';
 import { addPetToDatabase } from '../../api/write';
-import { loadPetsFromDatabase } from '../../api/read';
 import { uploadImage } from '../../api/storage';
 import './styles.scss';
 
@@ -19,9 +17,6 @@ const AddPet = (props) => {
   const [selectedImage, setSelectedImage] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
-  // const [localPetList, setLocalPetList] = useState([]);
-  // const petInfo = useSelector((state) => state.petInfo.pet);
-  // const dispatch = useDispatch();
   const inputFile = useRef();
 
   /**
@@ -52,7 +47,6 @@ const AddPet = (props) => {
    * - If all checks are passed, information is stored in redux state, and in the database.
    */
   const addPetHandler = async () => {
-    console.log('userID:', userID);
     const validate = [];
     setErrorMessages([]);
     setSuccessMessage('');
@@ -76,10 +70,9 @@ const AddPet = (props) => {
         image: pictureURL,
       };
 
-      // dispatch(addPet(data));
       addPetToDatabase(data, userID);
+      // TODO: Load pets from the database, to retrieve the pet ID's.
       // loadPetsFromDatabase(userID);
-      // setLocalPetList(petInfo);
       setPetName('');
       setSelectedImage('');
       setSuccessMessage('Pet added successfully.');

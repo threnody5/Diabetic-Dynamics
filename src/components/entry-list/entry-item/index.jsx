@@ -30,7 +30,6 @@ const EntryItem = ({ data }) => {
   const month = dateObject.getMonth();
   const namedMonth = months[month];
   const year = dateObject.getFullYear();
-  console.log('Date Object: ', dateObject);
 
   day = day + 1;
 

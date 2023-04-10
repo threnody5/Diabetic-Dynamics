@@ -27,7 +27,6 @@ export const loadPetsFromDatabase = (userID) => {
             console.error(err);
           }
         });
-        console.log('Pets Array from Load Pets From Database: ', petsArray);
         resolve(petsArray);
       });
     } catch (err) {

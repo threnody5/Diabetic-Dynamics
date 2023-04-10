@@ -57,7 +57,6 @@ export default function SignUp() {
     }
 
     setErrorMessages(validate);
-    // console.log(errorMessages);
     if (validate.length === 0) {
       setErrorMessages([]);
       // If all checks are successful, creates a new account with the email and password provided.

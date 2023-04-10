@@ -11,7 +11,6 @@ const storage = getStorage();
  * The image URL of the image from Firebase Storage.
  */
 const uploadImage = async (file) => {
-  console.log('File: ', file);
   try {
     const imageRef = ref(storage, `${uuid()}--${file.name}`);
     const snapshot = await uploadBytes(imageRef, file);
