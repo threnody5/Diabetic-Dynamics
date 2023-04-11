@@ -3,6 +3,7 @@ import loggedInReducer from './loggedInStatusSlice';
 import petInfoReducer from './petInfoSlice';
 import userIDReducer from './userIDSlice';
 import sugarConcentrationReducer from './sugarConcentrationSlice';
+import petIDReducer from './petIDSlice';
 
 /**
  * Creating the redux store with multiple reducers to handle application state.
@@ -17,5 +18,7 @@ export const store = configureStore({
     userID: userIDReducer,
     // Reducer to handle sugar concentration state.
     sugarConcentration: sugarConcentrationReducer,
+    // Reducer to handle the URL ID of the selected pet.
+    selectedPetID: petIDReducer,
   },
 });

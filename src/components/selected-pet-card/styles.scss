@@ -1,0 +1,19 @@
+@import './../../styles/variables.scss';
+
+.selected-pet-card {
+    display: flex;
+    flex-direction: row;
+
+    h3 {
+        text-align: center;
+        color: $light-text-highlight-color;
+        margin-right: 0.5rem;
+        padding: 0;
+    }
+
+    
+    img {
+        margin-top: 0.85rem;
+        margin-right: 0.5rem;
+    }
+}

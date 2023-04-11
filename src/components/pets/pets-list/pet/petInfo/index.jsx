@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Card from '../../../../Card';
 import AddEntryButton from '../../../../add-entry-button';
 import EntryList from '../../../../entry-list';
@@ -8,6 +8,7 @@ import * as database from './../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
 import { Navigate } from 'react-router-dom';
 import BloodCurveChart from '../../../../blood-curve-chart';
+import { setPetID } from '../../../../../util/redux/petIDSlice';
 import './styles.scss';
 
 /**
@@ -20,24 +21,14 @@ import './styles.scss';
 const PetInfo = () => {
   const dispatch = useDispatch();
   const userID = useSelector((state) => state.userID.id);
-  const [petName, setPetName] = useState('');
-  const [petImage, setPetImage] = useState('');
   const petID = useParams();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
-  const petInfo = useSelector((state) => state.petInfo.pet);
   const sugarConcentrationEntries = useSelector(
     (state) => state.sugarConcentration.sugarLevelData
   );
   const navigate = useNavigate();
 
   useEffect(() => {
-    petInfo.forEach((pet) => {
-      if (petID.id === pet.id) {
-        setPetName(pet.name);
-        setPetImage(pet.image);
-      }
-    });
-
     database
       .loadEntriesFromDatabase(userID, petID)
       .then((entriesArray) => {
@@ -56,35 +47,22 @@ const PetInfo = () => {
    */
   const navigateHandler = () => {
     navigate('/pets-list');
+    dispatch(setPetID(null));
   };
   return (
     <>
       {loggedInStatus ? (
         <>
           <Card>
-            <div className='selected-pet-card'>
-              <div>
-                <h3>{petName.toUpperCase()}</h3>
-              </div>
-              <div>
-                <img
-                  src={petImage}
-                  width={200}
-                  alt=''
-                />
-              </div>
-              <button
-                className='go-back-button'
-                onClick={navigateHandler}
-              >
-                Go back
-              </button>
-            </div>
-          </Card>
-          <Card>
             <BloodCurveChart />
           </Card>
           {sugarConcentrationEntries.length > 0 && <EntryList />}
+          <button
+            className='go-back-button'
+            onClick={navigateHandler}
+          >
+            Go back
+          </button>
           <AddEntryButton />
         </>
       ) : (

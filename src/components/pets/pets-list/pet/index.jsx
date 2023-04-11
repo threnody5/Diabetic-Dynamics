@@ -1,5 +1,7 @@
 import Card from './../../../Card';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setPetID } from '../../../../util/redux/petIDSlice';
 import './styles.scss';
 
 /**
@@ -10,10 +12,15 @@ import './styles.scss';
  * - When the card is clicked, navigates the user to the PetInfo component with the pet ID as the URL parameter.
  */
 const Pet = ({ name, image, id }) => {
+  const dispatch = useDispatch();
+
   return (
     <Card>
       <div className='pet-card'>
-        <Link to={id}>
+        <Link
+          to={id}
+          onClick={() => dispatch(setPetID(id))}
+        >
           <h3>{name.toUpperCase()}</h3>
           <img
             src={image}

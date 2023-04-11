@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignOut from '../sign-out';
+import SelectedPetCard from '../selected-pet-card';
+import { useDispatch } from 'react-redux';
+import { setPetID } from '../../util/redux/petIDSlice';
 import './styles.scss';
 
 /**
@@ -10,18 +13,22 @@ import './styles.scss';
  * - If the user is signed, displays the sign-out button.
  */
 export default function Navigation() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
   return (
     <div className='container'>
       <span className='webpage-name'>Diabetic Dynamics</span>
-      {/* <span className='button-container'> */}
       {loggedInStatus ? (
         <>
+          <SelectedPetCard />
           <button
             className='button-pets-list'
-            onClick={() => navigate('pets-list')}
+            onClick={() => {
+              navigate('pets-list');
+              dispatch(setPetID(null));
+            }}
           >
             Pets List
           </button>
@@ -43,7 +50,6 @@ export default function Navigation() {
           </button>
         </>
       )}
-      {/* </span> */}
     </div>
   );
 }
