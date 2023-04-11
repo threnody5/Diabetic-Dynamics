@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import AddPetButton from '../../add-pet-button';
 import Pets from '..';
 import * as database from './../../../api';
 import { loadPets } from '../../../util/redux/petInfoSlice';
+import StickyButton from '../../sticky-button';
+import AddPet from '../../add-pet';
 
 /**
  * Loads the list of pets from the database, and adds them to the redux store.
@@ -35,7 +36,11 @@ const PetsList = () => {
         <>
           <Pets />
           <div>
-            <AddPetButton />
+            <StickyButton
+              title='Add Pet'
+              onClick={() => {}}
+              Component={AddPet}
+            />
           </div>
         </>
       ) : (

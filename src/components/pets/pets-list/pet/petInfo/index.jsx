@@ -2,13 +2,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Card from '../../../../Card';
-import AddEntryButton from '../../../../add-entry-button';
 import EntryList from '../../../../entry-list';
 import * as database from './../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
 import { Navigate } from 'react-router-dom';
 import BloodCurveChart from '../../../../blood-curve-chart';
 import { setPetID } from '../../../../../util/redux/petIDSlice';
+import StickyButton from '../../../../sticky-button';
+import AddEntry from '../../../../add-entry';
 import './styles.scss';
 
 /**
@@ -63,7 +64,11 @@ const PetInfo = () => {
             <BloodCurveChart />
           </Card>
           {sugarConcentrationEntries.length > 0 && <EntryList />}
-          <AddEntryButton />
+          <StickyButton
+            title='Add New Entry'
+            onClick={() => {}}
+            Component={AddEntry}
+          />
         </>
       ) : (
         <Navigate to='/' />
