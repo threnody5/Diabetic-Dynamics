@@ -1,5 +1,7 @@
 import { authentication } from './../../api/FirebaseConfig';
 import { signOut } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setPetID } from '../../util/redux/petIDSlice';
 import './styles.scss';
 
 /**
@@ -10,6 +12,7 @@ import './styles.scss';
  * A button that triggers the sign-out handler.
  */
 const SignOut = () => {
+  const dispatch = useDispatch();
   /**
    * Handler function for the sign-out process.
    * Call made to Firebase Auth API to sign the user out.
@@ -17,7 +20,9 @@ const SignOut = () => {
    */
   const signOutHandler = () => {
     signOut(authentication)
-      .then(() => {})
+      .then(() => {
+        dispatch(setPetID(null));
+      })
       .catch((err) => {
         console.error(err);
       });
