@@ -7,6 +7,7 @@ import EntryList from '../../../../entry-list';
 import * as database from './../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
 import { Navigate } from 'react-router-dom';
+import BloodCurveChart from '../../../../blood-curve-chart';
 import './styles.scss';
 
 /**
@@ -79,6 +80,9 @@ const PetInfo = () => {
                 Go back
               </button>
             </div>
+          </Card>
+          <Card>
+            <BloodCurveChart />
           </Card>
           {sugarConcentrationEntries.length > 0 && <EntryList />}
           <AddEntryButton />
