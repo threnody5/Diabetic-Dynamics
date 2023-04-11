@@ -2,6 +2,10 @@
 
 .go-back-button {
     @include button;
+    margin: 1rem 0 -1rem 1rem;
+    background-color: #5D33B4;
+    color: #fff;
+    width: 200px;
     &::before {
         content: '<';
         margin-right: 1rem;

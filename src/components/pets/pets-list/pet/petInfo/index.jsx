@@ -53,16 +53,16 @@ const PetInfo = () => {
     <>
       {loggedInStatus ? (
         <>
-          <Card>
-            <BloodCurveChart />
-          </Card>
-          {sugarConcentrationEntries.length > 0 && <EntryList />}
           <button
             className='go-back-button'
             onClick={navigateHandler}
           >
             Go back
           </button>
+          <Card>
+            <BloodCurveChart />
+          </Card>
+          {sugarConcentrationEntries.length > 0 && <EntryList />}
           <AddEntryButton />
         </>
       ) : (
