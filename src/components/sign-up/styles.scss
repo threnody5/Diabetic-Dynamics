@@ -1,6 +1,7 @@
 @import './../../styles/variables.scss';
 
 .sign-up-container {
+    width: 100%;
 
     h1,
     label {
@@ -31,17 +32,13 @@
 
     .label-text {
         font-weight: bold;
-        margin-left: -7px;
-    }
+        margin-left: -5px;
 
-    .input-field {
-        width: 30vw;
-        padding-top: 1vh;
-        padding-bottom: 1vh;
-        margin-bottom: 2vh;
-
-        input:focus {
-            background-color: red;
+        .input-field {
+            width: 40vw;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+            margin-bottom: 2vh;
         }
     }
 
@@ -51,7 +48,7 @@
         align-items: center;
 
         .button-container {
-            width: 100%;
+            width: 40.5vw;
             display: flex;
             flex-direction: column;
             align-items: center;

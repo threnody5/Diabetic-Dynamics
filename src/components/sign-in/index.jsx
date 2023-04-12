@@ -42,13 +42,17 @@ const SignIn = () => {
           // User has been signed in.
         })
         .catch((err) => {
-          // const errorMessage = err.message;
-          // validate.push('An error has occurred. Please try again.');
-          window.alert('Incorrect password, please try again.');
+          const errorMessage = err.message;
+          console.log('From inside the Promise');
+          validate.push(errorMessage);
+          setErrorMessages(validate);
         });
+    } else {
+      console.log('From outside the Promise');
+      setErrorMessages(validate);
     }
-    setErrorMessages(validate);
   };
+
   return (
     <Card>
       {!loggedInStatus ? (
