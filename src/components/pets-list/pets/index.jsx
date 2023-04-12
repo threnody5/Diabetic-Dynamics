@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import Pet from './pets-list/pet';
+import Pet from './pet';
 import './styles.scss';
 
 /**

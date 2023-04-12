@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Card from '../../../../Card';
 import EntryList from '../../../../entry-list';
-import * as database from './../../../../../api';
+import * as database from '../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';
 import { Navigate } from 'react-router-dom';
 import BloodCurveChart from '../../../../blood-curve-chart';

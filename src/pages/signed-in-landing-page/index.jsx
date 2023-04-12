@@ -1,5 +1,5 @@
 import React from 'react';
-import PetsList from '../../components/pets/pets-list';
+import PetsList from './../../components/pets-list';
 
 /**
  * Represents the landing page displayed after a user has successfully signed in.
