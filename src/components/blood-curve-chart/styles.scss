@@ -1,6 +1,12 @@
 @import './../../styles/variables.scss';
 
 .blood-curve-chart-container {
+    width: 100%;
+
+    .blood-curve-chart {
+        margin-left: -1.5rem;;
+    }
+
     h1 {
         color: $light-text-highlight-color;
         text-align: center;

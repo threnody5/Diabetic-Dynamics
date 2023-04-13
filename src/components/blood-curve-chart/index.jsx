@@ -6,6 +6,7 @@ import {
   YAxis,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -41,22 +42,24 @@ const BloodCurveChart = () => {
   return (
     <div className='blood-curve-chart-container'>
       <h1>Blood-Glucose Curve</h1>
-      <LineChart
-        width={750}
-        height={300}
-        data={data}
+      <ResponsiveContainer
+        className='blood-curve-chart'
+        width='100%'
+        height={400}
       >
-        <CartesianGrid></CartesianGrid>
-        <XAxis dataKey='date'></XAxis>
-        <YAxis></YAxis>
-        <Tooltip></Tooltip>
-        <Legend></Legend>
-        <Line
-          type='monotone'
-          dataKey='bloodSugar'
-          stroke='#288582'
-        />
-      </LineChart>
+        <LineChart data={data}>
+          <CartesianGrid />
+          <XAxis dataKey='date' />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            type='monotone'
+            dataKey='bloodSugar'
+            stroke='#288582'
+          />
+        </LineChart>
+      </ResponsiveContainer>
       <div className='blood-curve-chart-average'>
         Average Blood Sugar:{' '}
         <span style={{ color: averageBloodSugar > 6.7 ? 'red' : 'green' }}>
