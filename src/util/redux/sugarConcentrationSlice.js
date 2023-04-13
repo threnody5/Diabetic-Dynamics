@@ -18,9 +18,14 @@ export const sugarConcentrationSlice = createSlice({
     loadEntries: (state, action) => {
       state.sugarLevelData = action.payload;
     },
+    RemoveSelectedEntry: (state, action) => {
+      const entryID = action.payload;
+      const index = state.sugarLevelData.indexOf(entryID);
+      state.sugarLevelData.splice(index, 1);
+    },
   },
 });
 
-export const { addSugarLevelData, loadEntries } =
+export const { addSugarLevelData, loadEntries, RemoveSelectedEntry } =
   sugarConcentrationSlice.actions;
 export default sugarConcentrationSlice.reducer;

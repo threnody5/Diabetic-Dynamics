@@ -1,3 +1,7 @@
+import { BsFillTrash3Fill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { RemoveSelectedEntry } from '../../../util/redux/sugarConcentrationSlice';
 import './styles.scss';
 
 /**
@@ -10,6 +14,11 @@ import './styles.scss';
  * - Blood Glucose level taken from the user.
  */
 const EntryItem = ({ data }) => {
+  const dispatch = useDispatch();
+  const sugarConcentrationEntries = useSelector(
+    (state) => state.sugarConcentration.sugarLevelData
+  );
+
   const months = {
     0: 'January',
     1: 'February',
@@ -37,6 +46,23 @@ const EntryItem = ({ data }) => {
     day = '0' + day;
   }
 
+  /**
+   * Handles removing the selected entry from the sugar concentration entries array and the redux store.
+   */
+  const trashEntryHandler = () => {
+    // Retrieve all entry IDs from the sugar concentration entries array.
+    const entryIDs = sugarConcentrationEntries
+      .map((entry) => entry.entryID)
+      .flat();
+
+    // Check if the selected entry ID exists in the entry IDs array.
+    if (entryIDs.includes(data.entryID)) {
+      // Retrieve the selected entry ID and dispatch the remove action to the redux store.
+      const selectedEntryID = data.entryID;
+      dispatch(RemoveSelectedEntry(selectedEntryID));
+    }
+  };
+
   return (
     <div className='entry-list-container'>
       <div className='entry-list-items'>
@@ -52,6 +78,12 @@ const EntryItem = ({ data }) => {
           {data.sugarConcentration}{' '}
         </div>{' '}
         mmol/L
+        <button
+          onClick={trashEntryHandler}
+          className='entry-list-trash'
+        >
+          <BsFillTrash3Fill />
+        </button>
       </div>
     </div>
   );
