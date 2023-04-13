@@ -19,6 +19,7 @@ const EntryItem = ({ data }) => {
     (state) => state.sugarConcentration.sugarLevelData
   );
 
+  // Maps numeric values to their corresponding names.
   const months = {
     0: 'January',
     1: 'February',
