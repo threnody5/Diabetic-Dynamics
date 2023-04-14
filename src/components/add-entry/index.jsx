@@ -152,7 +152,9 @@ const AddEntry = (props) => {
       >
         <div className='modal-header'>
           {/* Success Message when the information is stored. */}
-          <div className='modal-success-message'>{successMessage}</div>
+          <div className='modal-success-message'>
+            {successMessage}
+          </div>
           {/* Error Messages when the entered information doesn't pass the checks. */}
           <div className='modal-error-messages'>
             {errorMessages.map((errorMessage, index) => {
@@ -174,7 +176,9 @@ const AddEntry = (props) => {
                 type='number'
                 title='e.g. 7.3'
                 value={sugarConcentration}
-                onChange={(e) => setSugarConcentration(e.target.value)}
+                onChange={(e) =>
+                  setSugarConcentration(e.target.value)
+                }
               />
               mmol/L
             </label>

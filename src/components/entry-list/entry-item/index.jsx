@@ -38,7 +38,7 @@ const EntryItem = ({ data }) => {
   };
 
   // Creates a new Data object based on the date that is provided in the data object.
-  const dateObject = new Date(data.date);
+  const dateObject = new Date(data.date + 'T12:00Z');
   // Retrieves the day of the month from the date object.
   let day = dateObject.getDate();
   // Retrieves the numeric month value from the date object.
@@ -47,8 +47,6 @@ const EntryItem = ({ data }) => {
   const namedMonth = months[month];
   // retrieves the year value from the date object.
   const year = dateObject.getFullYear();
-
-  day = day + 1;
 
   // Adds a leading 0 if the day value is less than 10.
   if (day < 10) {
@@ -105,7 +103,9 @@ const EntryItem = ({ data }) => {
         {/* Displays the sugar concentration value for the entry, with color coded text based on the value entered*/}
         <div
           className='entry-item-sugar-concentration'
-          style={{ color: data.sugarConcentration > 6.7 ? 'red' : 'green' }}
+          style={{
+            color: data.sugarConcentration > 6.7 ? 'red' : 'green',
+          }}
         >
           {data.sugarConcentration}{' '}
         </div>{' '}
