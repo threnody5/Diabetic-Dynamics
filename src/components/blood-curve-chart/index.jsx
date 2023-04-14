@@ -36,7 +36,7 @@ const BloodCurveChart = () => {
         bloodSugar: parseFloat(data.sugarConcentration),
         date: data.date,
       });
-      averageBloodSugarArray.push(parseInt(data.sugarConcentration));
+      averageBloodSugarArray.push(parseFloat(data.sugarConcentration));
     });
 
     // Adds all the blood sugar values together, and passes the value into the totalBloodSugar variable.
@@ -48,11 +48,15 @@ const BloodCurveChart = () => {
     // Adds the bloodSugarArray to the data state, which is passed to the chart.
     setData(bloodSugarArray);
 
-    // Average blood sugar is set by taking the totalBloodSugar, dividing it by the
-    // number of items in the averageBloodSugarArray, and setting the decimal point to one.
-    setAverageBloodSugar(
-      (totalBloodSugar / averageBloodSugarArray.length).toFixed(1)
-    );
+    if (averageBloodSugarArray.length === 0) {
+      setAverageBloodSugar(0);
+    } else {
+      // Average blood sugar is set by taking the totalBloodSugar, dividing it by the
+      // number of items in the averageBloodSugarArray, and setting the decimal point to one.
+      const totalBloodSugarAverage =
+        totalBloodSugar / averageBloodSugarArray.length;
+      setAverageBloodSugar(totalBloodSugarAverage.toFixed(1));
+    }
   }, [bloodSugarData]);
 
   // Returns a chart component that displays a line chart of the blood sugar data, and average blood sugar.
@@ -90,7 +94,11 @@ const BloodCurveChart = () => {
       */}
       <div className='blood-curve-chart-average'>
         Average Blood Sugar:{' '}
-        <span style={{ color: averageBloodSugar > 6.7 ? 'red' : 'green' }}>
+        <span
+          style={{
+            color: averageBloodSugar > 6.7 ? 'red' : 'green',
+          }}
+        >
           {averageBloodSugar}
         </span>
       </div>
