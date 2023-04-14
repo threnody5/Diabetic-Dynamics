@@ -19,10 +19,9 @@ const PetsList = () => {
   const userID = useSelector((state) => state.userID.id);
   const dispatch = useDispatch();
 
-  // TODO: state should update when the user adds a new pet, allowing the user to go to the selected pets page.
   useEffect(() => {
+    // Loads the pets from the database with th provided userID.
     database
-      // Loads the pets from the database with th provided userID.
       .loadPetsFromDatabase(userID)
       .then((petsArray) => {
         // dispatches the loadPets action to the redux store, with the array of pets passed in as the payload.

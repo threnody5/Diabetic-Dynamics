@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as database from './../../api';
 import { uploadImage } from '../../api/storage';
+import { useDispatch } from 'react-redux';
+import { loadPets } from '../../util/redux/petInfoSlice';
 import './styles.scss';
 
 /**
@@ -12,6 +14,7 @@ import './styles.scss';
  * Returns the JSX form for adding the entry to the database.
  */
 const AddPet = (props) => {
+  const dispatch = useDispatch();
   const userID = useSelector((state) => state.userID.id);
   const [petName, setPetName] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
@@ -81,8 +84,17 @@ const AddPet = (props) => {
 
       // Adds the pet to the database.
       database.addPetToDatabase(data, userID);
-      // TODO: Load pets from the database, to retrieve the pet ID's.
-      // loadPetsFromDatabase(userID);
+
+      // Loads the pets from the database with th provided userID.
+      await database
+        .loadPetsFromDatabase(userID)
+        .then((petsArray) => {
+          // dispatches the loadPets action to the redux store, with the array of pets passed in as the payload.
+          dispatch(loadPets(petsArray));
+        })
+        .catch((err) => {
+          console.error(err);
+        });
 
       // Clears the input fields for the user.
       setPetName('');
