@@ -15,6 +15,7 @@ const Pets = () => {
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
   return (
     <>
+      {/* If the user is logged in, maps through the petInfo array to return each pet to the Pet component */}
       {loggedInStatus ? (
         <>
           {petInfo.length === 0 ? (
@@ -35,6 +36,7 @@ const Pets = () => {
           )}
         </>
       ) : (
+        // If the user is not logged in, redirects them back to the home page.
         <Navigate to='/' />
       )}
     </>

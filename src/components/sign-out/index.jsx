@@ -21,14 +21,17 @@ const SignOut = () => {
   const signOutHandler = () => {
     signOut(authentication)
       .then(() => {
+        // Sets the petID back to null when the user signs out.
         dispatch(setPetID(null));
       })
+      // console logs any errors the user may encounter when logging out.
       .catch((err) => {
         console.error(err);
       });
   };
   return (
     <>
+      {/* The button so the user can sign out of the application */}
       <button
         className='sign-out-button'
         onClick={signOutHandler}

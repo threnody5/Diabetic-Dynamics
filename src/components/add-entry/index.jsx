@@ -23,6 +23,7 @@ const AddEntry = (props) => {
   const dispatch = useDispatch();
   const petID = useParams();
 
+  // An array of objects containing possible measurements options.
   const measuredList = [
     {
       value: 'Please select a value',
@@ -44,9 +45,13 @@ const AddEntry = (props) => {
    * - If all checks are passed, information is stored in redux state, and in the database.
    */
   const addEntryHandler = () => {
+    // Creates an empty array for the error messages.
     const validate = [];
+
+    // Clears the error messages when the user attempts to add a new entry.
     setErrorMessages([]);
 
+    // Perform validation checks to ensure required fields are filled out.
     if (sugarConcentration.length === 0) {
       validate.push('Please enter a value for blood-glucose level.');
     }
@@ -63,6 +68,7 @@ const AddEntry = (props) => {
       validate.push('Please select a time.');
     }
 
+    // If all required fields are filled out, create an object with the data.
     if (validate.length === 0) {
       const data = {
         id: petID.id,
@@ -72,19 +78,28 @@ const AddEntry = (props) => {
         time: time,
       };
 
+      // Informs the user that the entry was successful.
       setSuccessMessage('Entry successfully saved.');
+
+      // Adds the entry to the redux store.
       dispatch(addSugarLevelData(data));
+
+      // Adds the entry to the database.
       database.addEntryToDatabase(data, userID, petID);
+
+      // Clears the input fields for the user.
       setSugarConcentration('');
       setMeasured('');
       setDate('');
       setTime('');
 
+      // Clears the success message for the user after 2.5 seconds.
       setTimeout(() => {
         setSuccessMessage('');
       }, 2500);
     }
 
+    // If error message were added to the validate array, sets the error messages to inform the user.
     if (validate.length > 0) {
       setErrorMessages(validate);
     }
@@ -101,10 +116,13 @@ const AddEntry = (props) => {
     setTime('');
   };
 
+  // If the modal should not be displayed, return null.
   if (!props.show) {
     return null;
   }
 
+  // If the modal should be displayed, render the modal container,
+  // and add event listener to close the modal when clicked outside.
   return (
     <div
       className='modal-container-add-entry'

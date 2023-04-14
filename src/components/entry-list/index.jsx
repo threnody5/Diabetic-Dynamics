@@ -19,9 +19,12 @@ const EntryList = () => {
   );
 
   useEffect(() => {
+    // Checks if the entry.id matches the petID.id, and stores those matches in the variable.
     const matchingEntries = sugarConcentrationEntries.filter(
       (entry) => entry.id === petID.id
     );
+
+    // Sets the matchingEntries to the dataList state.
     setDataList(matchingEntries);
   }, [sugarConcentrationEntries, petID.id]);
 
@@ -40,6 +43,7 @@ const EntryList = () => {
     <>
       <Card>
         <div className='entry-list-container'>
+          {/* The entries are displayed using the dataList array */}
           {dataList.map((data, index) => {
             return (
               <div

@@ -26,7 +26,10 @@ export default function SignUp() {
    * - If account creation fails, the user will be prompted with the error message.
    */
   const createAccount = (e) => {
+    // Prevents default browser behavior with the form submission.
     e.preventDefault();
+
+    // Empty array for the validation messages.
     const validate = [];
 
     // Check if the email address is valid.

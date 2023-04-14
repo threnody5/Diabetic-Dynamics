@@ -16,6 +16,9 @@ const Pet = ({ name, image, id }) => {
 
   return (
     <Card>
+      {/* name, image, and id props are passed into the Pet component,
+          and each pet is wrapped in the Card component.
+      */}
       <div className='pet-card'>
         <Link
           to={id}

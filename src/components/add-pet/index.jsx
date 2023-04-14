@@ -47,9 +47,16 @@ const AddPet = (props) => {
    * - If all checks are passed, information is stored in redux state, and in the database.
    */
   const addPetHandler = async () => {
+    // Creates an empty array for the error messages.
     const validate = [];
+
+    // Clears the error messages when the user attempts to add a new entry.
     setErrorMessages([]);
+
+    // Clears the success messages when the user attempts to add a new entry.
     setSuccessMessage('');
+
+    // Perform validation checks to ensure required fields are filled out.
     if (petName === '') {
       validate.push('Please enter a pet name.');
     }
@@ -57,10 +64,12 @@ const AddPet = (props) => {
       validate.push('Please select an image.');
     }
 
+    // If error message were added to the validate array, sets the error messages to inform the user.
     if (validate.length > 0) {
       setErrorMessages(validate);
     }
 
+    // If all required fields are filled out, create an object with the data.
     if (validate.length === 0) {
       const file = inputFile.current.files[0];
       const pictureURL = await uploadImage(file);
@@ -70,24 +79,33 @@ const AddPet = (props) => {
         image: pictureURL,
       };
 
+      // Adds the pet to the database.
       database.addPetToDatabase(data, userID);
       // TODO: Load pets from the database, to retrieve the pet ID's.
       // loadPetsFromDatabase(userID);
+
+      // Clears the input fields for the user.
       setPetName('');
       setSelectedImage('');
-      setSuccessMessage('Pet added successfully.');
       inputFile.current.value = '';
 
+      // Informs the user that the pet entry was successful.
+      setSuccessMessage('Pet added successfully.');
+
+      // Clears the success message for the user after 2.5 seconds.
       setTimeout(() => {
         setSuccessMessage('');
-      }, 3000);
+      }, 2500);
     }
   };
 
+  // If the modal should not be displayed, return null.
   if (!props.show) {
     return null;
   }
 
+  // If the modal should be displayed, render the modal container,
+  // and add event listener to close the modal when clicked outside.
   return (
     <div
       className='modal-container'

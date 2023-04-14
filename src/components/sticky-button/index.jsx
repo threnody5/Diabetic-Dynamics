@@ -11,6 +11,7 @@ function StickyButton({ title, onClick, Component }) {
 
   return (
     <div className='sticky-button-container'>
+      {/* When the button is clicked, showModal is set to true */}
       <button
         className='sticky-button'
         onClick={() => {
@@ -21,6 +22,7 @@ function StickyButton({ title, onClick, Component }) {
         {title}
       </button>
       {Component && (
+        // If a component is provided, it will be rendered in the modal.
         <Component
           onClose={() => setShowModal(false)}
           show={showModal}

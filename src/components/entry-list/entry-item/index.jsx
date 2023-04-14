@@ -35,14 +35,20 @@ const EntryItem = ({ data }) => {
     11: 'December',
   };
 
+  // Creates a new Data object based on the date that is provided in the data object.
   const dateObject = new Date(data.date);
+  // Retrieves the day of the month from the date object.
   let day = dateObject.getDate();
+  // Retrieves the numeric month value from the date object.
   const month = dateObject.getMonth();
+  // Retrieves the named month value from the months object based on the numeric month value.
   const namedMonth = months[month];
+  // retrieves the year value from the date object.
   const year = dateObject.getFullYear();
 
   day = day + 1;
 
+  // Adds a leading 0 if the day value is less than 10.
   if (day < 10) {
     day = '0' + day;
   }
@@ -64,14 +70,19 @@ const EntryItem = ({ data }) => {
     }
   };
 
+  // Renders the entry list item with the provided data and a delete button.
   return (
     <div className='entry-list-container'>
       <div className='entry-list-items'>
+        {/* Displays the formatted date for the entry */}
         <div className='entry-item-date'>
           {namedMonth}, {day}, {year}
         </div>
+        {/* Displays the time at which the entry was created */}
         <div className='entry-item-time'>{data.time}</div>
+        {/* Displays the closest meal that the entry was taken */}
         <div className='entry-item-measured'>{data.measured}</div>
+        {/* Displays the sugar concentration value for the entry, with color coded text based on the value entered*/}
         <div
           className='entry-item-sugar-concentration'
           style={{ color: data.sugarConcentration > 6.7 ? 'red' : 'green' }}
@@ -79,6 +90,7 @@ const EntryItem = ({ data }) => {
           {data.sugarConcentration}{' '}
         </div>{' '}
         mmol/L
+        {/* Deletes the entry when clicked */}
         <button
           onClick={trashEntryHandler}
           className='entry-list-trash'

@@ -17,9 +17,14 @@ export default function Navigation() {
   const navigate = useNavigate();
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
+  // Returns a container that displays the title of the webpage.
   return (
     <div className='container'>
       <span className='webpage-name'>Diabetic Dynamics</span>
+      {/* If the user is logged in, displays a button to navigate the user
+          to the list of pets they've added, and a button for the user to
+          of their account.
+      */}
       {loggedInStatus ? (
         <>
           <SelectedPetCard />
@@ -36,6 +41,9 @@ export default function Navigation() {
         </>
       ) : (
         <>
+          {/* If the user is not signed in, buttons to navigate the user to the 
+            sign in page, and sign up page are provided.
+        */}
           <button
             className='button-sign-in'
             onClick={() => navigate('sign-in')}
