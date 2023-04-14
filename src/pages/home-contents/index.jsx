@@ -38,9 +38,14 @@ class HomeContents extends React.Component {
             </p>
           </span>
         </div>
-        <div className='landing-page-gentlemen'>
-          <div className='landing-page-message'>
-            <p className='landing-page-message-text'>
+        <div className='landing-page-gentleman-container'>
+          <img
+            src={catGentlemen}
+            alt=''
+            className='gentleman-image'
+          />
+          <div className='landing-page-gentleman-message'>
+            <p className='landing-page-gentleman-message-text'>
               At Diabetic Dynamics for Pets, we understand that managing a pet's
               diabetes can be a challenge. That's why we've created useful
               charts and tools to help pet owners keep track of their pet's
@@ -54,13 +59,6 @@ class HomeContents extends React.Component {
               are a valuable resource that can help make managing your pet's
               condition easier and more manageable.
             </p>
-          </div>
-          <div>
-            <img
-              src={catGentlemen}
-              alt=''
-              className='gentlemen-image'
-            />
           </div>
         </div>
         <h2>Testimonials</h2>
