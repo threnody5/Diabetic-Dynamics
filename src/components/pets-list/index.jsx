@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Pets from './pets';
@@ -14,6 +14,7 @@ import AddPet from '../add-pet';
  * - If the user is not logged in, navigates them back to the Home page.
  */
 const PetsList = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
   const userID = useSelector((state) => state.userID.id);
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const PetsList = () => {
       .then((petsArray) => {
         // dispatches the loadPets action to the redux store, with the array of pets passed in as the payload.
         dispatch(loadPets(petsArray));
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -37,7 +39,7 @@ const PetsList = () => {
       {/* If the user is logged in, returned the list of their pets */}
       {loggedInStatus ? (
         <>
-          <Pets />
+          <Pets isLoading={isLoading} />
           <div>
             {/* Button allowing the user to add a pet to their list of pets */}
             <StickyButton
