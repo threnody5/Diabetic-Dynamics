@@ -44,7 +44,7 @@ const AddEntry = (props) => {
    * - If all checks aren't passed, error message is displayed informing the user.
    * - If all checks are passed, information is stored in redux state, and in the database.
    */
-  const addEntryHandler = () => {
+  const addEntryHandler = async () => {
     // Creates an empty array for the error messages.
     const validate = [];
 
@@ -81,8 +81,9 @@ const AddEntry = (props) => {
       // Informs the user that the entry was successful.
       setSuccessMessage('Entry successfully saved.');
 
+      //! previous dispatch method.
       // Adds the entry to the redux store.
-      dispatch(addSugarLevelData(data));
+      // dispatch(addSugarLevelData(data));
 
       // Adds the entry to the database.
       database.addEntryToDatabase(data, userID, petID);
@@ -97,6 +98,23 @@ const AddEntry = (props) => {
       setTimeout(() => {
         setSuccessMessage('');
       }, 2500);
+
+      await database
+        // TODO: ask about correct data management.
+        // after adding the entries to the database, loads the data from the database
+        // to update the redux store.
+        .loadEntriesFromDatabase(userID, petID)
+        .then((entriesArray) => {
+          // Combines all the entries into a single object with the Object.assign() method.
+          const combinedObject = Object.assign({}, ...entriesArray);
+
+          // Flattens the object into an array using the Object.assign() and .flat() methods.
+          const flattenedArray = Object.values(combinedObject).flat();
+          dispatch(addSugarLevelData(flattenedArray));
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
 
     // If error message were added to the validate array, sets the error messages to inform the user.

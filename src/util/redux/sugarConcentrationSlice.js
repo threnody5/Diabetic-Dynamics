@@ -13,7 +13,7 @@ export const sugarConcentrationSlice = createSlice({
   },
   reducers: {
     addSugarLevelData: (state, action) => {
-      state.sugarLevelData.push(action.payload);
+      state.sugarLevelData = action.payload;
     },
     loadEntries: (state, action) => {
       state.sugarLevelData = action.payload;
