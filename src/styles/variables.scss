@@ -27,7 +27,7 @@ $dark-text-highlight-color: #321782;
 @mixin button {
     font-weight: bold;
     width: 100%;
-    padding: 10px 25px 10px 25px;
+    padding: 0.8rem 0 0.8rem 0;
     border: 1px solid black;
     color: $dark-button-text-color;
     background-color: $button-backdrop-color;
