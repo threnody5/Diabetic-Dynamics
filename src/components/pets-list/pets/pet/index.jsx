@@ -1,4 +1,4 @@
-import Card from './../../../Card';
+import Card from './../../../card';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPetID } from '../../../../util/redux/petIDSlice';

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Card from '../../../../Card';
+import Card from '../../../../card';
 import EntryList from '../../../../entry-list';
 import * as database from '../../../../../api';
 import { loadEntries } from '../../../../../util/redux/sugarConcentrationSlice';

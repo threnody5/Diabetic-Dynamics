@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from '../Card';
+import Card from '../card';
 import { Link, Navigate } from 'react-router-dom';
 import { authentication } from './../../api/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Card from '../Card';
+import Card from '../card';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import EntryItem from './entry-item';
