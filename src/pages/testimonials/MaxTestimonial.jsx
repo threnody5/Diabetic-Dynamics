@@ -71,9 +71,9 @@ class StoryOfMax extends React.Component {
             their pet's diabetes.
           </p>
           <h3>Lisa Ann</h3>
-        </div>
-        <div className='testimonial-home-link'>
-          <Link to='/'>Back Home</Link>
+          <div className='testimonial-home-link'>
+            <Link to='/'>Back Home</Link>
+          </div>
         </div>
       </Card>
     );

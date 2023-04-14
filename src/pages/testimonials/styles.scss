@@ -7,10 +7,17 @@
     h1 {
         text-align: center;
     }
-}
 
-.testimonial-home-link {
-    a {
-        @include link-text;
+    .testimonial-home-link {
+        &::before {
+            content: '<';
+            margin-right: 0.5rem;
+            font-weight: bold;
+            color: $light-text-highlight-color;
+        }
+
+        a {
+            @include link-text;
+        }
     }
 }

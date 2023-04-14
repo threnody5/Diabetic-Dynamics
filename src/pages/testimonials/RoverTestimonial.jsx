@@ -47,9 +47,9 @@ class StoryOfRover extends React.Component {
             recommend reaching out to them for help.
           </p>
           <h3>Sarah Jessica Parker</h3>
-        </div>
-        <div className='testimonial-home-link'>
-          <Link to='/'>Back Home</Link>
+          <div className='testimonial-home-link'>
+            <Link to='/'>Back Home</Link>
+          </div>
         </div>
       </Card>
     );

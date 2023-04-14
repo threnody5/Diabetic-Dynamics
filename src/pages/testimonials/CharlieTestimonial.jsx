@@ -51,9 +51,9 @@ class StoryOfCharlie extends React.Component {
             owner.
           </p>
           <h3>Antonio Banderas</h3>
-        </div>
-        <div className='testimonial-home-link'>
-          <Link to='/'>Back Home</Link>
+          <div className='testimonial-home-link'>
+            <Link to='/'>Back Home</Link>
+          </div>
         </div>
       </Card>
     );
