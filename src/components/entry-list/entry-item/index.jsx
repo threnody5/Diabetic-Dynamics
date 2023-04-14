@@ -2,6 +2,7 @@ import { BsFillTrash3Fill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { RemoveSelectedEntry } from '../../../util/redux/sugarConcentrationSlice';
+import { removeEntryFromDatabase } from '../../../api';
 import './styles.scss';
 
 /**
@@ -18,8 +19,9 @@ const EntryItem = ({ data }) => {
   const sugarConcentrationEntries = useSelector(
     (state) => state.sugarConcentration.sugarLevelData
   );
+  const userID = useSelector((state) => state.userID.id);
 
-  // Maps numeric values to their corresponding names.
+  // Maps numeric values to their corresponding month.
   const months = {
     0: 'January',
     1: 'February',
@@ -64,9 +66,27 @@ const EntryItem = ({ data }) => {
 
     // Check if the selected entry ID exists in the entry IDs array.
     if (entryIDs.includes(data.entryID)) {
-      // Retrieve the selected entry ID and dispatch the remove action to the redux store.
+      // const selectedEntryArray = sugarConcentrationEntries;
+
+      // Retrieve the selected entry ID and assign it to a variable.
       const selectedEntryID = data.entryID;
+
+      // Finds the entry in the sugarConcentrationEntries that matches the selectedEntryID value.
+      const selectedEntry = sugarConcentrationEntries.find(
+        (obj) => obj.entryID === selectedEntryID
+      );
+
+      // Variables assigning the selected entry values to shorter names.
+      const petID = selectedEntry.id;
+      const date = selectedEntry.date;
+      const time = selectedEntry.time;
+      const entryID = selectedEntry.entryID;
+
+      // Dispatch action removes the selected entry from the state.
       dispatch(RemoveSelectedEntry(selectedEntryID));
+
+      // All arguments passed in are for the URL path for the specified entry to be removed.
+      removeEntryFromDatabase(userID, petID, date, time, entryID);
     }
   };
 

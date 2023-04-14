@@ -1,4 +1,4 @@
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, remove } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 /**
@@ -44,5 +44,28 @@ export const addEntryToDatabase = (data, userID, petID) => {
     {
       ...updatedData,
     }
+  );
+};
+
+/**
+ * Removes the specific blood-glucose level entry the user has selected from the database.
+ * @param {string} userID
+ * String returned from the database if the user is logged in.
+ * @param {string} petID
+ * String returned from useParams in the URL when the user selected a pet.
+ * @param {string} date
+ * String of the date from the selected entry the user is deleting.
+ * @param {string} time
+ * String of the time from the selected entry the user is deleting.
+ * @param {string} entryID
+ * String of the selected ID from the entry the user is deleting.
+ */
+export const removeEntryFromDatabase = (userID, petID, date, time, entryID) => {
+  const database = getDatabase();
+  remove(
+    ref(
+      database,
+      `users/${userID}/pets/${petID}/entries/${date}/${time}--${entryID}`
+    )
   );
 };

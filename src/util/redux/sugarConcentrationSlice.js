@@ -19,9 +19,11 @@ export const sugarConcentrationSlice = createSlice({
       state.sugarLevelData = action.payload;
     },
     RemoveSelectedEntry: (state, action) => {
-      const entryID = action.payload;
-      const index = state.sugarLevelData.indexOf(entryID);
-      state.sugarLevelData.splice(index, 1);
+      // Variable assigned to the result of the filter, where the compared IDs do not match.
+      const updatedEntries = state.sugarLevelData.filter(
+        (entry) => entry.entryID !== action.payload
+      );
+      state.sugarLevelData = updatedEntries;
     },
   },
 });
