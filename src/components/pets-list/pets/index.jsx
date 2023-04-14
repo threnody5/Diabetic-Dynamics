@@ -29,7 +29,9 @@ const Pets = ({ isLoading }) => {
         <div className='pet-parent-container'>
           {petInfo.length === 0 || isLoading ? (
             // Loading message css styling is in index.css in src folder.
-            <div className='loading-message'>{messageToUser}</div>
+            <div className='loading-message-container'>
+              <div className='loading-message'>{messageToUser}</div>
+            </div>
           ) : (
             <div className='pet-container'>
               {petInfo.map((pet, index) => {

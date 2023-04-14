@@ -4,12 +4,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
 
     .pet-container {
         display: flex;
-        margin: 2rem;
         flex-direction: row;
         flex-wrap: wrap;
+    }
+
+    .loading-message-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
     }
 }
