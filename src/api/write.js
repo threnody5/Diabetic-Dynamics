@@ -8,12 +8,24 @@ import { v4 as uuid } from 'uuid';
  * @param {string} userID
  * String returned from useParams in URL when the user selects a pet.
  */
-export const addPetToDatabase = (data, userID) => {
+const addPetToDatabase = (data, userID) => {
   const database = getDatabase();
   const updatedData = { ...data, name: data.name, image: data.image };
   set(ref(database, `users/${userID}/pets/${data.name}--${uuid()}`), {
     ...updatedData,
   });
+};
+
+/**
+ * Removes the users selected pet from the database.
+ * @param {string} userID
+ * String returned from the database when the user logs in.
+ * @param {string} petID
+ * String returned from useParams in URL when the user has selected a pet.
+ */
+const removePetFromDatabase = (userID, petID) => {
+  const database = getDatabase();
+  remove(ref(database, `users/${userID}/pets/${petID}`));
 };
 
 /**
@@ -23,9 +35,9 @@ export const addPetToDatabase = (data, userID) => {
  * @param {string} userID
  * String returned from the database when the user logs in.
  * @param {string} petID
- * String returned from useParams in URL when the user selects a pet.
+ * String returned from useParams in URL when the user has selected a pet.
  */
-export const addEntryToDatabase = (data, userID, petID) => {
+const addEntryToDatabase = (data, userID, petID) => {
   const database = getDatabase();
   const entryID = `${uuid()}`;
   const updatedData = {
@@ -60,7 +72,7 @@ export const addEntryToDatabase = (data, userID, petID) => {
  * @param {string} entryID
  * String of the selected ID from the entry the user is deleting.
  */
-export const removeEntryFromDatabase = (userID, petID, date, time, entryID) => {
+const removeEntryFromDatabase = (userID, petID, date, time, entryID) => {
   const database = getDatabase();
   remove(
     ref(
@@ -68,4 +80,11 @@ export const removeEntryFromDatabase = (userID, petID, date, time, entryID) => {
       `users/${userID}/pets/${petID}/entries/${date}/${time}--${entryID}`
     )
   );
+};
+
+export {
+  addPetToDatabase,
+  removePetFromDatabase,
+  addEntryToDatabase,
+  removeEntryFromDatabase,
 };
