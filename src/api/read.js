@@ -7,7 +7,7 @@ import { database } from './FirebaseConfig';
  * @returns
  * An array of objects containing the pets information, and the snapshot.key as an ID.
  */
-export const loadPetsFromDatabase = (userID) => {
+const loadPetsFromDatabase = (userID) => {
   return new Promise((resolve, reject) => {
     try {
       const databaseRef = ref(database, `/users/${userID}/pets/`);
@@ -45,7 +45,7 @@ export const loadPetsFromDatabase = (userID) => {
  * @returns
  * An array of blood sugar entries for the selected pet.
  */
-export const loadEntriesFromDatabase = (userID, petID) => {
+const loadEntriesFromDatabase = (userID, petID) => {
   return new Promise((resolve, reject) => {
     try {
       const databaseRef = ref(
@@ -68,3 +68,5 @@ export const loadEntriesFromDatabase = (userID, petID) => {
     }
   });
 };
+
+export { loadPetsFromDatabase, loadEntriesFromDatabase };
