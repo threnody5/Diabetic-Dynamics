@@ -1,0 +1,12 @@
+@import './../../styles/variables.scss';
+
+.remove-pet-button-container {
+    display: flex;
+    justify-content: right;
+    margin: 0 1rem 1rem;
+
+    .remove-pet-button {
+        @include button(#fff, #b53333);
+        width: 200px;
+    }
+}
