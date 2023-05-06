@@ -14,9 +14,9 @@ import './styles.scss';
  * - Requires both the password and re-entered password to match.
  */
 export default function SignUp() {
-  const [emailAddress, setEmailAddress] = useState('test1@test.com');
-  const [password, setPassword] = useState('Temppassword1!');
-  const [reEnteredPassword, setReEnteredPassword] = useState('Temppassword1!');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [reEnteredPassword, setReEnteredPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
   const userID = useSelector((state) => state.userID.id);
 

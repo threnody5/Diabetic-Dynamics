@@ -13,8 +13,8 @@ import './styles.scss';
  * - If the email address and password are incorrect, the user will be informed of the errors.
  */
 const SignIn = () => {
-  const [emailAddress, setEmailAddress] = useState('test@test.com');
-  const [password, setPassword] = useState('Temppassword1!');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
 
