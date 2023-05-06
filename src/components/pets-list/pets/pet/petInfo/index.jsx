@@ -10,6 +10,7 @@ import BloodCurveChart from '../../../../blood-curve-chart';
 import { setPetID } from '../../../../../util/redux/petIDSlice';
 import StickyButton from '../../../../sticky-button';
 import AddEntry from '../../../../add-entry';
+import RemovePet from '../../../../remove-pet';
 import './styles.scss';
 
 /**
@@ -82,6 +83,7 @@ const PetInfo = () => {
           onClick={() => {}}
           Component={AddEntry}
         />
+        <RemovePet petID={petID.id} />
       </>
     );
   }

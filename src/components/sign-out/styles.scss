@@ -1,6 +1,6 @@
 @import './../../styles/variables.scss';
 
 .sign-out-button {
-    @include button;
+    @include button($dark-button-text-color, $button-backdrop-color);
     width: 15% !important;
 }

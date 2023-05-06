@@ -56,7 +56,7 @@ form.sign-in-container {
             margin-bottom: 2rem;
 
             .sign-in-account-button {
-                @include button;
+                @include button($dark-button-text-color, $button-backdrop-color);
             }
 
             .home-link,

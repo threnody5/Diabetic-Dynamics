@@ -2,7 +2,7 @@
 
 .page-not-found-container {
     button {
-        @include button;
+        @include button($dark-button-text-color, $button-backdrop-color);
         margin-top: 2rem;
 
         a {

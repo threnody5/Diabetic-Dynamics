@@ -4,11 +4,12 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    bottom: 20px;
+    bottom: 60px;
     width: 100%;
-
+    
     .sticky-button {
-        @include button;
+        @include button($dark-button-text-color, $button-backdrop-color);
         width: 200px;
+
     }
 }

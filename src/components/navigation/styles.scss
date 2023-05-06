@@ -11,7 +11,7 @@
     .button-sign-in,
     .button-sign-up,
     .button-pets-list {
-        @include button;
+        @include button($dark-button-text-color, $button-backdrop-color);
         width: 15%;
         margin-right: 0.5rem;
     }

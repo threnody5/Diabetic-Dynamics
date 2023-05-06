@@ -36,7 +36,7 @@
         padding: 2rem 0 0 0;
 
         .modal-button {
-            @include button;
+            @include button($dark-button-text-color, $button-backdrop-color);
             margin-bottom: 0.5rem;
         }
     }

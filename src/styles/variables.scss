@@ -24,13 +24,13 @@ $dark-text-highlight-color: #321782;
     }
 }
 
-@mixin button {
+@mixin button($text-color, $background-color) {
     font-weight: bold;
     width: 100%;
     padding: 0.8rem 0 0.8rem 0;
     border: 1px solid black;
-    color: $dark-button-text-color;
-    background-color: $button-backdrop-color;
+    color: $text-color;
+    background-color: $background-color;
     @content;
 }
 
