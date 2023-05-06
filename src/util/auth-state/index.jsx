@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
-import { logIn, logOut } from '../redux/loggedInStatusSlice';
+import {
+  logIn,
+  logOut,
+  loadingAccountStatus,
+} from '../redux/loggedInStatusSlice';
 import { addUserID } from '../redux/userIDSlice';
 import { authentication } from '../../api/FirebaseConfig';
 
@@ -17,11 +21,12 @@ export const AuthState = () => {
 
   useEffect(() => {
     onAuthStateChanged(authentication, (user) => {
+      dispatch(loadingAccountStatus());
       if (user) {
-        dispatch(logIn(true));
+        dispatch(logIn());
         dispatch(addUserID(user.uid));
       } else {
-        dispatch(logOut(false));
+        dispatch(logOut());
         dispatch(addUserID(null));
       }
     });

@@ -16,6 +16,9 @@ import AddPet from '../add-pet';
 const PetsList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const loggedInStatus = useSelector((state) => state.loggedInStatus.loggedIn);
+  const loadingStatus = useSelector(
+    (state) => state.loggedInStatus.loadingStatus
+  );
   const userID = useSelector((state) => state.userID.id);
   const dispatch = useDispatch();
 
@@ -33,10 +36,10 @@ const PetsList = () => {
       });
   }, [userID, dispatch]);
 
-  return (
-    <>
-      {/* If the user is logged in, returned the list of their pets */}
-      {loggedInStatus ? (
+  if (loggedInStatus && !loadingStatus) {
+    return (
+      <>
+        {/* If the user is logged in, returned the list of their pets */}
         <>
           <Pets isLoading={isLoading} />
           <div>
@@ -48,12 +51,16 @@ const PetsList = () => {
             />
           </div>
         </>
-      ) : (
-        // If the user is not logged in, redirects them back to the home page.
-        <Navigate to='/' />
-      )}
-    </>
-  );
+      </>
+    );
+  }
+
+  if (!loggedInStatus && !loadingStatus) {
+    return (
+      // If the user is not logged in, redirects them back to the home page.
+      <Navigate to='/' />
+    );
+  }
 };
 
 export default PetsList;

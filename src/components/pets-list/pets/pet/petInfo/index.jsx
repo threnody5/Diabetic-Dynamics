@@ -27,6 +27,9 @@ const PetInfo = () => {
   const sugarConcentrationEntries = useSelector(
     (state) => state.sugarConcentration.sugarLevelData
   );
+  const loadingStatus = useSelector(
+    (state) => state.loggedInStatus.loadingStatus
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +50,7 @@ const PetInfo = () => {
         console.error(err);
       });
     // eslint-disable-next-line
-  }, []);
+  }, [loggedInStatus, loadingStatus]);
 
   /**
    * Handler function for navigating the user back to the pet-list page.
@@ -56,38 +59,39 @@ const PetInfo = () => {
     navigate('/pets-list');
     dispatch(setPetID(null));
   };
-  return (
-    <>
-      {/* If the user is logged in, displays a button to navigate the user back to the previous page,
-        displays the BloodCurveChart component, and if the redux store for entries is greater than 0,
-        loads the EntryList component. 
-    */}
-      {loggedInStatus ? (
-        <>
-          <button
-            className='go-back-button'
-            onClick={navigateHandler}
-          >
-            Go back
-          </button>
-          <Card>
-            {/* Chart displaying the blood sugar value entered by the user. */}
-            <BloodCurveChart />
-          </Card>
-          {sugarConcentrationEntries.length > 0 && <EntryList />}
-          {/* Button allowing the user to add a new entry */}
-          <StickyButton
-            title='Add New Entry'
-            onClick={() => {}}
-            Component={AddEntry}
-          />
-        </>
-      ) : (
-        // If the user is not logged in, redirects them back to the home page.
-        <Navigate to='/' />
-      )}
-    </>
-  );
+  if (loggedInStatus && !loadingStatus) {
+    return (
+      // If the user is logged in, displays a button to navigate the user back to the previous page,
+      // displays the BloodCurveChart component, and if the redux store for entries is greater than 0,
+      // loads the EntryList component.
+      <>
+        <button
+          className='go-back-button'
+          onClick={navigateHandler}
+        >
+          Go back
+        </button>
+        <Card>
+          {/* Chart displaying the blood sugar value entered by the user. */}
+          <BloodCurveChart />
+        </Card>
+        {sugarConcentrationEntries.length > 0 && <EntryList />}
+        {/* Button allowing the user to add a new entry */}
+        <StickyButton
+          title='Add New Entry'
+          onClick={() => {}}
+          Component={AddEntry}
+        />
+      </>
+    );
+  }
+
+  if (!loggedInStatus && !loadingStatus) {
+    return (
+      // If the user is not logged in, redirects them back to the home page.
+      <Navigate to='/' />
+    );
+  }
 };
 
 export default PetInfo;

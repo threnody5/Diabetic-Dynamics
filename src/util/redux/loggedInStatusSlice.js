@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loggedIn: false,
+  loadingStatus: true,
 };
 
 /**
@@ -20,8 +21,11 @@ export const loggedInSlice = createSlice({
     logOut: (state) => {
       state.loggedIn = false;
     },
+    loadingAccountStatus: (state) => {
+      state.loadingStatus = false;
+    },
   },
 });
 
-export const { logIn, logOut } = loggedInSlice.actions;
+export const { logIn, logOut, loadingAccountStatus } = loggedInSlice.actions;
 export default loggedInSlice.reducer;
