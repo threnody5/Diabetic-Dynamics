@@ -13,7 +13,6 @@ const RemovePet = ({ petID }) => {
     const verification = window.prompt(
       'Are you sure you want to remove this pet from your account? \n Type in Yes to remove.'
     );
-    console.log('Verification:', verification);
     if (verification === 'Yes') {
       database.removePetFromDatabase(userID, petID);
       // TODO: Remove this second window alert and add an overlay
