@@ -50,8 +50,9 @@ const PetInfo = () => {
       .catch((err) => {
         console.error(err);
       });
+    dispatch(setPetID(petID.id));
     // eslint-disable-next-line
-  }, [loggedInStatus, loadingStatus]);
+  }, [loggedInStatus, loadingStatus, petID]);
 
   /**
    * Handler function for navigating the user back to the pet-list page.
