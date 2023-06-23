@@ -4,14 +4,13 @@ import { getDatabase } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAaxfBvngtIgQGOKcGvgqNB4thIY6ispwk',
-  authDomain: 'react-js4-final-project-app.firebaseapp.com',
-  projectId: 'react-js4-final-project-app',
-  storageBucket: 'react-js4-final-project-app.appspot.com',
-  messagingSenderId: '878125714956',
-  appId: '1:878125714956:web:e1510e6ab93ef38123a829',
-  databaseURL:
-    'https://react-js4-final-project-app-default-rtdb.firebaseio.com',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
 
 export const app = initializeApp(firebaseConfig);
